@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Midterm Project</string>
+    <string name="email">email</string>
+    <string name="password">password</string>
+    <string name="repeat_password">repeat password</string>
+    <string name="register">register</string>
+    <string name="already_registered_login">already registered? login</string>
+    <string name="login">login</string>
+    <string name="not_registered_yet_register_here">not signed up yet? register here</string>
+    <string name="remember_me">Remember Me</string>
+</resources>
