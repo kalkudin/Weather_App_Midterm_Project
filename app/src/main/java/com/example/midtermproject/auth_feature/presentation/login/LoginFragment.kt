@@ -28,10 +28,10 @@ class LoginFragment : BaseFragment<FragmentLoginLayoutBinding>(FragmentLoginLayo
 
     override fun bindObservers() {
         viewLifecycleOwner.lifecycleScope.launch {
-            repeatOnLifecycle(Lifecycle.State.STARTED){
-                loginViewModel.loginFlow.collect(){ resource ->
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                loginViewModel.loginFlow.collect { resource ->
                     when(resource){
-                        is Resource.Success ->{
+                        is Resource.Success -> {
                             hideProgressBar()
                             showSuccess()
                         }
@@ -49,12 +49,12 @@ class LoginFragment : BaseFragment<FragmentLoginLayoutBinding>(FragmentLoginLayo
         }
 
         viewLifecycleOwner.lifecycleScope.launch {
-            repeatOnLifecycle(Lifecycle.State.STARTED){
-                loginViewModel.navigationFlow.collect(){
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                loginViewModel.navigationFlow.collect {
                     when(it){
                         is LoginNavigationEvent.NavigateUserToHome -> navigateToHome()
                         is LoginNavigationEvent.NavigateUserToRegister -> navigateToRegister()
-                        is LoginNavigationEvent.NavigateUserToMap -> navigateToMap()
+                        is LoginNavigationEvent.NavigateUserToWeather -> navigateToWeather()
                     }
                 }
             }
@@ -97,8 +97,8 @@ class LoginFragment : BaseFragment<FragmentLoginLayoutBinding>(FragmentLoginLayo
         findNavController().navigate(R.id.action_loginFragment_to_registerFragment)
     }
 
-    private fun navigateToMap(){
-        findNavController().navigate(R.id.action_loginFragment_to_mapFragment)
+    private fun navigateToWeather(){
+        findNavController().navigate(R.id.action_loginFragment_to_weatherTodayFragment)
     }
 
     private fun showSuccess(){
@@ -106,7 +106,7 @@ class LoginFragment : BaseFragment<FragmentLoginLayoutBinding>(FragmentLoginLayo
     }
 
     private fun showError(errorMessage : String){
-        Snackbar.make(binding.root, errorMessage, Snackbar.LENGTH_LONG).setAction("OK") {}.show()
+        Snackbar.make(binding.root, errorMessage, Snackbar.LENGTH_LONG).setAction("OK"){}.show()
     }
 
     private fun showProgressBar(){

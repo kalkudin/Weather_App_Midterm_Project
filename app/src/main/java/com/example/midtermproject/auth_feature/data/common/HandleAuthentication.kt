@@ -22,7 +22,7 @@ class HandleAuthentication @Inject constructor() {
         try {
             val result = operation(user.email, user.password).await()
             if (result.user != null) {
-                emit(Resource.Success(onSuccess(result))) // Convert AuthResult to T and emit
+                emit(Resource.Success(onSuccess(result)))
             } else {
                 emit(Resource.Error("Authentication failed"))
             }

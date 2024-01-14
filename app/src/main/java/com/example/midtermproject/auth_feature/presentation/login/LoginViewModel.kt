@@ -71,7 +71,7 @@ class LoginViewModel @Inject constructor(
 
     private fun loginSuccess(){
         viewModelScope.launch {
-            _navigationFlow.emit(LoginNavigationEvent.NavigateUserToMap)
+            _navigationFlow.emit(LoginNavigationEvent.NavigateUserToWeather)
         }
     }
 
@@ -80,5 +80,5 @@ class LoginViewModel @Inject constructor(
 sealed class LoginNavigationEvent {
     data object NavigateUserToRegister : LoginNavigationEvent()
     data object NavigateUserToHome : LoginNavigationEvent()
-    data object NavigateUserToMap : LoginNavigationEvent()
+    data object NavigateUserToWeather : LoginNavigationEvent()
 }

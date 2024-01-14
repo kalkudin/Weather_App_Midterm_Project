@@ -16,8 +16,8 @@ class HomeViewModel @Inject constructor(
     private val readSessionUseCase: ReadSessionUseCase
 ) : ViewModel() {
 
-    private val _navigationFlow = MutableSharedFlow<NavigationEvent>()
-    val navigationFlow: SharedFlow<NavigationEvent> = _navigationFlow.asSharedFlow()
+    private val _navigationFlow = MutableSharedFlow<HomeNavigationEvent>()
+    val navigationFlow: SharedFlow<HomeNavigationEvent> = _navigationFlow.asSharedFlow()
 
     init {
         checkSession()
@@ -36,25 +36,25 @@ class HomeViewModel @Inject constructor(
         viewModelScope.launch {
             readSessionUseCase().collect {
                 when(it){
-                    true -> _navigationFlow.emit(NavigationEvent.NavigateToLogin)
-                    false -> _navigationFlow.emit(NavigationEvent.RemainOnCurrentPage)
+                    true -> _navigationFlow.emit(HomeNavigationEvent.NavigateToWeather)
+                    false -> _navigationFlow.emit(HomeNavigationEvent.RemainOnCurrentPage)
                 }
             }
         }
     }
 
     private suspend fun navigateToLoginPage(){
-        _navigationFlow.emit(NavigationEvent.NavigateToLogin)
+        _navigationFlow.emit(HomeNavigationEvent.NavigateToLogin)
     }
 
     private suspend fun navigateToRegister(){
-        _navigationFlow.emit(NavigationEvent.NavigateToRegister)
+        _navigationFlow.emit(HomeNavigationEvent.NavigateToRegister)
     }
 }
 
-sealed class NavigationEvent() {
-    data object NavigateToLogin : NavigationEvent()
-    data object NavigateToRegister : NavigationEvent()
-    data object NavigateToMap : NavigationEvent()
-    data object RemainOnCurrentPage : NavigationEvent()
+sealed class HomeNavigationEvent() {
+    data object NavigateToLogin : HomeNavigationEvent()
+    data object NavigateToRegister : HomeNavigationEvent()
+    data object NavigateToWeather : HomeNavigationEvent()
+    data object RemainOnCurrentPage : HomeNavigationEvent()
 }

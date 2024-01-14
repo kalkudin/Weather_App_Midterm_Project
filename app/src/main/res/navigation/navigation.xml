@@ -15,8 +15,8 @@
             android:id="@+id/action_loginFragment_to_registerFragment"
             app:destination="@id/registerFragment" />
         <action
-            android:id="@+id/action_loginFragment_to_mapFragment"
-            app:destination="@id/mapFragment" />
+            android:id="@+id/action_loginFragment_to_weatherTodayFragment"
+            app:destination="@id/weatherTodayFragment" />
     </fragment>
     <fragment
         android:id="@+id/homeFragment"
@@ -29,8 +29,8 @@
             android:id="@+id/action_homeFragment_to_registerFragment"
             app:destination="@id/registerFragment" />
         <action
-            android:id="@+id/action_homeFragment_to_mapFragment"
-            app:destination="@id/mapFragment" />
+            android:id="@+id/action_homeFragment_to_weatherTodayFragment"
+            app:destination="@id/weatherTodayFragment" />
     </fragment>
     <fragment
         android:id="@+id/registerFragment"
@@ -44,7 +44,11 @@
             app:destination="@id/loginFragment" />
     </fragment>
     <fragment
-        android:id="@+id/mapFragment"
+        android:id="@+id/weatherTodayFragment"
         android:name="com.example.midtermproject.weather_feature.presentation.map.WeatherTodayFragment"
-        android:label="MapFragment" />
+        android:label="WeatherTodayFragment" >
+        <action
+            android:id="@+id/action_weatherTodayFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
 </navigation>

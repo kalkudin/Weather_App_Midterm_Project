@@ -42,10 +42,10 @@ class HomeFragment : BaseFragment<FragmentHomeLayoutBinding>(FragmentHomeLayoutB
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 homeViewModel.navigationFlow.collect { event ->
                     when (event) {
-                        is NavigationEvent.NavigateToLogin -> navigateToLogin()
-                        is NavigationEvent.NavigateToRegister -> navigateToRegister()
-                        is NavigationEvent.NavigateToMap -> navigateToMap()
-                        is NavigationEvent.RemainOnCurrentPage -> remainOnCurrentPage()
+                        is HomeNavigationEvent.NavigateToLogin -> navigateToLogin()
+                        is HomeNavigationEvent.NavigateToRegister -> navigateToRegister()
+                        is HomeNavigationEvent.NavigateToWeather -> navigateToWeather()
+                        is HomeNavigationEvent.RemainOnCurrentPage -> remainOnCurrentPage()
                     }
                 }
             }
@@ -60,8 +60,8 @@ class HomeFragment : BaseFragment<FragmentHomeLayoutBinding>(FragmentHomeLayoutB
         findNavController().navigate(R.id.action_homeFragment_to_registerFragment)
     }
 
-    private fun navigateToMap(){
-        findNavController().navigate(R.id.action_loginFragment_to_mapFragment)
+    private fun navigateToWeather(){
+        findNavController().navigate(R.id.action_homeFragment_to_weatherTodayFragment)
     }
 
     private fun remainOnCurrentPage(){
