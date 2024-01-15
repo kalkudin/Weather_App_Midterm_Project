@@ -1,9 +1,7 @@
 package com.example.midtermproject.weather_feature.presentation.model
 
-import com.example.midtermproject.weather_feature.domain.model.WeatherInfo
-
 data class WeatherState(
     val isLoading: Boolean = false,
-    val weatherInfo: WeatherInfo? = null,
+    val detailedWeatherInfo: List<WeatherDetailedInfo>? = null,
     val errorMessage: String? = null
 )

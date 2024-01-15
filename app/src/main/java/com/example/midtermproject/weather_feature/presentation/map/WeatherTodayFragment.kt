@@ -1,5 +1,6 @@
 package com.example.midtermproject.weather_feature.presentation.map
 
+import android.annotation.SuppressLint
 import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.viewModels
@@ -10,9 +11,11 @@ import androidx.navigation.fragment.findNavController
 import com.example.midtermproject.R
 import com.example.midtermproject.auth_feature.presentation.base.BaseFragment
 import com.example.midtermproject.databinding.FragmentWeatherTodayLayoutBinding
+import com.example.midtermproject.weather_feature.presentation.model.WeatherDetailedInfo
 import com.example.midtermproject.weather_feature.presentation.model.WeatherState
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
+import java.time.format.DateTimeFormatter
 
 @AndroidEntryPoint
 class WeatherTodayFragment : BaseFragment<FragmentWeatherTodayLayoutBinding>(FragmentWeatherTodayLayoutBinding::inflate) {
@@ -60,16 +63,28 @@ class WeatherTodayFragment : BaseFragment<FragmentWeatherTodayLayoutBinding>(Fra
     private fun handleWeatherState(state: WeatherState) {
         binding.progressBar.visibility = if (state.isLoading) View.VISIBLE else View.GONE
 
-        state.weatherInfo?.let { weatherInfo ->
-            if (weatherInfo.currentWeatherData.isNotEmpty()) {
-                val firstWeatherData = weatherInfo.currentWeatherData.first()
-                val message = "Time: ${firstWeatherData.time}, Temp: ${firstWeatherData.temperatureCelsius}°C"
-                Toast.makeText(context, message, Toast.LENGTH_LONG).show()
-            }
+        state.detailedWeatherInfo?.getOrNull(2)?.let { detailedWeather ->
+            updateWeatherUI(detailedWeather)
         }
 
         state.errorMessage?.let { errorMessage ->
             Toast.makeText(context, errorMessage, Toast.LENGTH_LONG).show()
+        }
+    }
+
+    @SuppressLint("SetTextI18n")
+    private fun updateWeatherUI(weather: WeatherDetailedInfo) {
+        val formattedTime = weather.time.format(DateTimeFormatter.ofPattern("HH:mm"))
+        val formattedTemp = "${weather.temperatureCelsius}°C"
+
+        binding.apply {
+            iconPrimary.setImageResource(weather.iconRes)
+            desc.text = weather.weatherDescription
+            time.text = "Time: $formattedTime"
+            humidity.text = "Humidity: ${weather.relativeHumidity}%"
+            temp.text = "Temp: $formattedTemp"
+            speed.text = "Wind Speed: ${weather.windSpeed} km/h"
+            humidityProgressBar.progress = weather.relativeHumidity
         }
     }
 

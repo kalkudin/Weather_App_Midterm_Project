@@ -1,12 +1,16 @@
 package com.example.midtermproject.auth_feature.di
 
+import android.content.Context
 import com.example.midtermproject.weather_feature.data.service.WeatherDataService
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationServices
 import com.google.firebase.BuildConfig
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -57,5 +61,11 @@ object AppModule {
     @Singleton
     fun provideWeatherDataService(retrofit: Retrofit): WeatherDataService {
         return retrofit.create(WeatherDataService::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideFusedLocationProviderClient(@ApplicationContext context: Context): FusedLocationProviderClient {
+        return LocationServices.getFusedLocationProviderClient(context)
     }
 }

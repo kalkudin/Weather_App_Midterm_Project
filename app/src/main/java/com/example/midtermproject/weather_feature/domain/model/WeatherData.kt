@@ -6,5 +6,6 @@ data class WeatherData(
     val time: LocalDateTime,
     val temperatureCelsius: Double,
     val code : Int,
-    val windSpeed : Double
+    val windSpeed : Double,
+    val relativeHumidity : Int
 )

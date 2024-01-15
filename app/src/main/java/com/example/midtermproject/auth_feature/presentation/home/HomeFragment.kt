@@ -6,9 +6,9 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import com.example.midtermproject.R
-import com.example.midtermproject.databinding.FragmentHomeLayoutBinding
 import com.example.midtermproject.auth_feature.presentation.base.BaseFragment
 import com.example.midtermproject.auth_feature.presentation.event.HomeEvent
+import com.example.midtermproject.databinding.FragmentHomeLayoutBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -61,11 +61,10 @@ class HomeFragment : BaseFragment<FragmentHomeLayoutBinding>(FragmentHomeLayoutB
         findNavController().navigate(R.id.action_homeFragment_to_registerFragment)
     }
 
-    private fun navigateToWeather(){
+    private fun navigateToWeather() {
         findNavController().navigate(R.id.action_homeFragment_to_weatherTodayFragment)
     }
 
-    private fun remainOnCurrentPage(){
-
+    private fun remainOnCurrentPage() {
     }
 }

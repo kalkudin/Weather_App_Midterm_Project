@@ -16,14 +16,15 @@ fun WeatherDto.toDomain(): WeatherInfo {
             Triple(timeTempPair.first, timeTempPair.second, weatherCode)
         }
         .zip(this.hourlyData.windSpeed) { timeTempCodeTriple: Triple<String, Double, Int>,
-
                                           windSpeed: Double ->
             val (time, temperature, weatherCode) = timeTempCodeTriple
+            val relativeHumidity = this.hourlyData.relativeHumidity[this.hourlyData.times.indexOf(time)] // Get the corresponding relative humidity
             WeatherData(
                 time = LocalDateTime.parse(time, DateTimeFormatter.ISO_DATE_TIME),
                 temperatureCelsius = temperature,
                 code = weatherCode,
-                windSpeed = windSpeed
+                windSpeed = windSpeed,
+                relativeHumidity = relativeHumidity
             )
         }
     return WeatherInfo(weatherDataList)
