@@ -4,6 +4,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.midtermproject.auth_feature.data.common.Resource
 import com.example.midtermproject.auth_feature.domain.usecase.auth_usecase.RegisterUserUseCase
+import com.example.midtermproject.auth_feature.presentation.event.RegisterEvent
+import com.example.midtermproject.auth_feature.presentation.model.AuthState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -11,14 +13,15 @@ import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class RegisterViewModel @Inject constructor(private val registerUserUseCase: RegisterUserUseCase) : ViewModel() {
 
-    private val _registerFlow = MutableStateFlow<Resource<Boolean>?>(null)
-    val registerFlow: StateFlow<Resource<Boolean>?> = _registerFlow.asStateFlow()
+    private val _registerFlow = MutableStateFlow(AuthState())
+    val registerFlow:  StateFlow<AuthState> = _registerFlow.asStateFlow()
 
     private val _navigationFlow = MutableSharedFlow<RegisterNavigationEvent>()
     val navigationFlow : SharedFlow<RegisterNavigationEvent> = _navigationFlow.asSharedFlow()
@@ -29,28 +32,34 @@ class RegisterViewModel @Inject constructor(private val registerUserUseCase: Reg
                 is RegisterEvent.Register -> registerUser(email = event.email, password = event.password, repeatPassword = event.repeatPassword)
                 is RegisterEvent.UserAlreadyAuthenticated -> takeUserToLogin()
                 is RegisterEvent.TakeUserToHome -> takeUserBackToHome()
+                is RegisterEvent.ResetStateValue -> resetRegisterFlow()
             }
         }
     }
 
-    private suspend fun registerUser(email : String, password : String, repeatPassword : String){
+    private fun registerUser(email: String, password: String, repeatPassword: String) {
         viewModelScope.launch {
-            registerUserUseCase(email = email, password = password, repeatPassword = repeatPassword).collect(){
-                when(it){
+            _registerFlow.update { it.copy(isLoading = true) }
+            registerUserUseCase(email, password, repeatPassword).collect { resource ->
+                when (resource) {
                     is Resource.Success -> {
-                        _registerFlow.value = it
+                        _registerFlow.update { it.copy(isSuccess = true, isLoading = false) }
                         takeUserToLogin()
                     }
-
                     is Resource.Error -> {
-                        _registerFlow.value = Resource.Error(it.errorMessage)
+                        _registerFlow.update { it.copy(errorMessage = resource.errorMessage, isLoading = false) }
                     }
-
                     is Resource.Loading -> {
-                        _registerFlow.value = Resource.Loading
+                        _registerFlow.update { it.copy(isLoading = true) }
                     }
                 }
             }
+        }
+    }
+
+    private fun resetRegisterFlow(){
+        viewModelScope.launch {
+            _registerFlow.value = AuthState()
         }
     }
 

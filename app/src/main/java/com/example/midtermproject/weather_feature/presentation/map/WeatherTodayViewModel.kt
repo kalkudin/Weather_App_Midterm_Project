@@ -6,7 +6,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.midtermproject.auth_feature.data.common.Resource
 import com.example.midtermproject.auth_feature.domain.usecase.datastore_usecase.ClearSessionUseCase
 import com.example.midtermproject.weather_feature.domain.usecase.GetWeatherUseCase
-import com.example.midtermproject.weather_feature.presentation.map.model.WeatherState
+import com.example.midtermproject.weather_feature.presentation.model.WeatherState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -15,6 +15,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -39,18 +40,17 @@ class WeatherTodayViewModel @Inject constructor(
                 when (result) {
                     is Resource.Success -> {
                         val weatherInfo = result.data
-                        _weatherState.value = WeatherState(weatherInfo = weatherInfo)
+                        _weatherState.update { WeatherState(weatherInfo = weatherInfo) }
                         weatherInfo.currentWeatherData.firstOrNull()?.let { firstWeatherData ->
-                            Log.d("WeatherTodayViewModel", "First Weather Data - Time: ${firstWeatherData.time}, Temp: ${firstWeatherData.temperatureCelsius}°C")
+                            Log.d("WeatherTodayViewModel", "First Weather Data - Time: ${firstWeatherData.time}, Temp: ${firstWeatherData.temperatureCelsius}°C, Code: ${firstWeatherData.code}, Wind: ${firstWeatherData.windSpeed}")
                         }
                     }
                     is Resource.Error -> {
-                        _weatherState.value = WeatherState(errorMessage = result.errorMessage)
+                        _weatherState.update { WeatherState(errorMessage = result.errorMessage) }
                         Log.d("WeatherTodayViewModel", result.errorMessage)
-
                     }
                     is Resource.Loading -> {
-                        _weatherState.value = WeatherState(isLoading = true)
+                        _weatherState.update { WeatherState(isLoading = true) }
                     }
                 }
             }

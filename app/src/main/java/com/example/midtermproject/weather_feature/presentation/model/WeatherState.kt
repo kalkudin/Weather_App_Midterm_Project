@@ -1,4 +1,4 @@
-package com.example.midtermproject.weather_feature.presentation.map.model
+package com.example.midtermproject.weather_feature.presentation.model
 
 import com.example.midtermproject.weather_feature.domain.model.WeatherInfo
 

@@ -21,12 +21,12 @@ class RegisterUserUseCase @Inject constructor(
             return flowOf(Resource.Error("Invalid email address"))
         }
 
-        if (!authUtil.isValidPassword(password)) {
-            return flowOf(Resource.Error("Password does not meet the criteria"))
-        }
-
         if (!authUtil.doPasswordsMatch(password, repeatPassword)) {
             return flowOf(Resource.Error("Passwords do not match"))
+        }
+
+        if (!authUtil.isValidPassword(password)) {
+            return flowOf(Resource.Error("Password does not meet the criteria"))
         }
 
         val user = User(email, password)

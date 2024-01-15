@@ -30,9 +30,11 @@ object AppModule {
     @Provides
     @Singleton
     fun provideOkHttpClient(loggingInterceptor: HttpLoggingInterceptor): OkHttpClient {
-        return OkHttpClient.Builder()
-            .addInterceptor(loggingInterceptor)
-            .build()
+        val builder = OkHttpClient.Builder()
+        if (com.example.midtermproject.BuildConfig.DEBUG) {
+            builder.addInterceptor(loggingInterceptor)
+        }
+        return builder.build()
     }
 
     @Provides
@@ -50,6 +52,7 @@ object AppModule {
             )
             .build()
     }
+
     @Provides
     @Singleton
     fun provideWeatherDataService(retrofit: Retrofit): WeatherDataService {

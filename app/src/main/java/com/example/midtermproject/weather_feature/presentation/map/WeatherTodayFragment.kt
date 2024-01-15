@@ -10,7 +10,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.midtermproject.R
 import com.example.midtermproject.auth_feature.presentation.base.BaseFragment
 import com.example.midtermproject.databinding.FragmentWeatherTodayLayoutBinding
-import com.example.midtermproject.weather_feature.presentation.map.model.WeatherState
+import com.example.midtermproject.weather_feature.presentation.model.WeatherState
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 

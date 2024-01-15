@@ -9,6 +9,8 @@ import androidx.navigation.fragment.findNavController
 import com.example.midtermproject.R
 import com.example.midtermproject.auth_feature.data.common.Resource
 import com.example.midtermproject.auth_feature.presentation.base.BaseFragment
+import com.example.midtermproject.auth_feature.presentation.event.LoginEvent
+import com.example.midtermproject.auth_feature.presentation.model.AuthState
 import com.example.midtermproject.databinding.FragmentLoginLayoutBinding
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
@@ -27,38 +29,8 @@ class LoginFragment : BaseFragment<FragmentLoginLayoutBinding>(FragmentLoginLayo
     }
 
     override fun bindObservers() {
-        viewLifecycleOwner.lifecycleScope.launch {
-            repeatOnLifecycle(Lifecycle.State.STARTED) {
-                loginViewModel.loginFlow.collect { resource ->
-                    when(resource){
-                        is Resource.Success -> {
-                            hideProgressBar()
-                            showSuccess()
-                        }
-                        is Resource.Error -> {
-                            hideProgressBar()
-                            showError(resource.errorMessage)
-                        }
-                        is Resource.Loading ->
-                            showProgressBar()
-
-                        else -> {}
-                    }
-                }
-            }
-        }
-
-        viewLifecycleOwner.lifecycleScope.launch {
-            repeatOnLifecycle(Lifecycle.State.STARTED) {
-                loginViewModel.navigationFlow.collect {
-                    when(it){
-                        is LoginNavigationEvent.NavigateUserToHome -> navigateToHome()
-                        is LoginNavigationEvent.NavigateUserToRegister -> navigateToRegister()
-                        is LoginNavigationEvent.NavigateUserToWeather -> navigateToWeather()
-                    }
-                }
-            }
-        }
+        bindLoginFlow()
+        bindNavigationEvents()
     }
 
     private fun bindLoginBtn() {
@@ -86,6 +58,43 @@ class LoginFragment : BaseFragment<FragmentLoginLayoutBinding>(FragmentLoginLayo
             btnBack.setOnClickListener {
                 loginViewModel.onEvent(LoginEvent.TakeUserToHome)
             }
+        }
+    }
+
+    private fun bindLoginFlow(){
+        viewLifecycleOwner.lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                loginViewModel.loginFlow.collect { state ->
+                    handleLoginState(state)
+                    loginViewModel.onEvent(LoginEvent.ResetFlow)
+                }
+            }
+        }
+    }
+
+    private fun bindNavigationEvents(){
+        viewLifecycleOwner.lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                loginViewModel.navigationFlow.collect {
+                    when(it){
+                        is LoginNavigationEvent.NavigateUserToHome -> navigateToHome()
+                        is LoginNavigationEvent.NavigateUserToRegister -> navigateToRegister()
+                        is LoginNavigationEvent.NavigateUserToWeather -> navigateToWeather()
+                    }
+                }
+            }
+        }
+    }
+
+    private fun handleLoginState(state: AuthState) {
+        binding.progressBar.visibility = if (state.isLoading) View.VISIBLE else View.GONE
+
+        if (state.isSuccess) {
+            showSuccess()
+        }
+
+        state.errorMessage?.let { errorMessage ->
+            showError(errorMessage)
         }
     }
 

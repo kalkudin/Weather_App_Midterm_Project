@@ -8,6 +8,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.midtermproject.R
 import com.example.midtermproject.databinding.FragmentHomeLayoutBinding
 import com.example.midtermproject.auth_feature.presentation.base.BaseFragment
+import com.example.midtermproject.auth_feature.presentation.event.HomeEvent
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 

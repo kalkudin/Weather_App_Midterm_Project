@@ -3,6 +3,7 @@ package com.example.midtermproject.auth_feature.presentation.home
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.midtermproject.auth_feature.domain.usecase.datastore_usecase.ReadSessionUseCase
+import com.example.midtermproject.auth_feature.presentation.event.HomeEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.SharedFlow
