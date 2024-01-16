@@ -74,5 +74,53 @@
         app:layout_constraintTop_toBottomOf="@+id/btn_already_registered"
         app:layout_constraintVertical_bias="0.063" />
 
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/ic_cloud"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="140dp"
+        android:layout_marginEnd="300dp"
+        android:src="@drawable/ic_cloud"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/ic_cloud_2"
+        android:layout_width="288dp"
+        android:layout_height="290dp"
+        android:layout_marginStart="228dp"
+        android:layout_marginTop="232dp"
+        android:src="@drawable/ic_cloud"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/ic_cloud_3"
+        android:layout_width="154dp"
+        android:layout_height="98dp"
+        android:layout_marginTop="192dp"
+        android:layout_marginEnd="48dp"
+        android:src="@drawable/ic_cloud"
+        app:layout_constraintEnd_toEndOf="@+id/ic_cloud_2"
+        app:layout_constraintTop_toTopOf="@+id/ic_cloud_2" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/ic_cloud_4"
+        android:layout_width="128dp"
+        android:layout_height="111dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="104dp"
+        android:src="@drawable/ic_cloud"
+        app:layout_constraintStart_toStartOf="@+id/ic_cloud"
+        app:layout_constraintTop_toTopOf="@+id/ic_cloud" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/ic_cloud_5"
+        android:layout_width="111dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="512dp"
+        android:layout_marginEnd="308dp"
+        android:src="@drawable/ic_cloud"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

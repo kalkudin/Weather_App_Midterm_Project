@@ -2,9 +2,9 @@ package com.example.midtermproject.auth_feature.di
 
 import android.content.Context
 import com.example.midtermproject.weather_feature.data.service.WeatherDataService
+import com.example.midtermproject.weather_feature.data.service.WeatherWeeklyService
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
-import com.google.firebase.BuildConfig
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import dagger.Module
@@ -16,7 +16,6 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
-import javax.inject.Named
 import javax.inject.Singleton
 
 @Module
@@ -61,6 +60,12 @@ object AppModule {
     @Singleton
     fun provideWeatherDataService(retrofit: Retrofit): WeatherDataService {
         return retrofit.create(WeatherDataService::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideWeatherWeeklyService(retrofit: Retrofit): WeatherWeeklyService {
+        return retrofit.create(WeatherWeeklyService::class.java)
     }
 
     @Provides

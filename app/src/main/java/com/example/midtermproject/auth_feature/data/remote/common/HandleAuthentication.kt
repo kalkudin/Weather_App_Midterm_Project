@@ -1,6 +1,6 @@
-package com.example.midtermproject.auth_feature.data.common
+package com.example.midtermproject.auth_feature.data.remote.common
 
-import com.example.midtermproject.auth_feature.data.model.UserDto
+import com.example.midtermproject.auth_feature.data.remote.model.UserDto
 import com.google.android.gms.tasks.Task
 import com.google.firebase.FirebaseNetworkException
 import com.google.firebase.auth.AuthResult

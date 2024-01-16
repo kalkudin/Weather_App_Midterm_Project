@@ -1,6 +1,6 @@
 package com.example.midtermproject.weather_feature.presentation.model
 
-data class WeatherTodayInfo(
+data class WeatherTodayDetails(
     val formattedDate: String,
     val formattedTime: String,
     val temperatureCelsius: Double,

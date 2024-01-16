@@ -1,7 +1,7 @@
 package com.example.midtermproject.weather_feature.presentation.model
 
-data class WeatherState(
+data class WeatherWeeklyState(
     val isLoading: Boolean = false,
-    val detailedWeatherInfo: List<WeatherTodayInfo>? = null,
+    val detailedWeatherInfo: List<WeatherWeeklyDetails>? = null,
     val errorMessage: String? = null
 )

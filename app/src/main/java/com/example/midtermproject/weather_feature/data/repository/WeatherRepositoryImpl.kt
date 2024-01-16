@@ -1,6 +1,6 @@
 package com.example.midtermproject.weather_feature.data.repository
 
-import com.example.midtermproject.auth_feature.data.common.Resource
+import com.example.midtermproject.auth_feature.data.remote.common.Resource
 import com.example.midtermproject.weather_feature.data.common.HandleResponse
 import com.example.midtermproject.weather_feature.data.mapper.mapResource
 import com.example.midtermproject.weather_feature.data.mapper.toDomain
@@ -14,7 +14,6 @@ class WeatherRepositoryImpl @Inject constructor(
     private val weatherDataService: WeatherDataService,
     private val handleResponse: HandleResponse
 ) : WeatherRepository {
-
     override suspend fun getWeatherData(lat: Double, long: Double): Flow<Resource<WeatherInfo>> {
         return handleResponse.handleApiCall {
             weatherDataService.getWeatherData(lat, long)

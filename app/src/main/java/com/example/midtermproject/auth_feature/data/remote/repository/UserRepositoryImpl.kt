@@ -1,8 +1,8 @@
-package com.example.midtermproject.auth_feature.data.repository
+package com.example.midtermproject.auth_feature.data.remote.repository
 
-import com.example.midtermproject.auth_feature.data.common.HandleAuthentication
-import com.example.midtermproject.auth_feature.data.common.Resource
-import com.example.midtermproject.auth_feature.data.mapper.toDto
+import com.example.midtermproject.auth_feature.data.remote.common.HandleAuthentication
+import com.example.midtermproject.auth_feature.data.remote.common.Resource
+import com.example.midtermproject.auth_feature.data.remote.mapper.toDto
 import com.example.midtermproject.auth_feature.domain.model.User
 import com.example.midtermproject.auth_feature.domain.repository.UserRepository
 import com.google.firebase.auth.FirebaseAuth

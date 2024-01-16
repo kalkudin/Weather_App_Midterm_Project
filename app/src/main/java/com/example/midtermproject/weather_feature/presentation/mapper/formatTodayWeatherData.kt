@@ -1,18 +1,18 @@
 package com.example.midtermproject.weather_feature.presentation.mapper
 
 import com.example.midtermproject.weather_feature.domain.model.WeatherInfo
-import com.example.midtermproject.weather_feature.presentation.model.WeatherTodayInfo
+import com.example.midtermproject.weather_feature.presentation.model.WeatherTodayDetails
 import com.example.midtermproject.weather_feature.presentation.model.WeatherType
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.Locale
 
-fun formatTodayWeatherData(weatherInfo: WeatherInfo): List<WeatherTodayInfo> {
+fun formatTodayWeatherData(weatherInfo: WeatherInfo): List<WeatherTodayDetails> {
     val inputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm")
     val dateOutputFormatter = DateTimeFormatter.ofPattern("MMMM dd", Locale.US)
     val timeOutputFormatter = DateTimeFormatter.ofPattern("HH:mm")
 
-    val relevantIndices = listOf(0, 5, 11, 17, 23)
+    val relevantIndices = listOf(17)
     return weatherInfo.currentWeatherData
         .filterIndexed { index, _ -> index in relevantIndices }
         .map { weatherData ->
@@ -21,7 +21,7 @@ fun formatTodayWeatherData(weatherInfo: WeatherInfo): List<WeatherTodayInfo> {
             val formattedTime = dateTime.format(timeOutputFormatter)
 
             val weatherType = WeatherType.fromWMO(weatherData.code)
-            WeatherTodayInfo(
+            WeatherTodayDetails(
                 formattedDate = formattedDate,
                 formattedTime = formattedTime,
                 temperatureCelsius = weatherData.temperatureCelsius,

@@ -1,6 +1,6 @@
-package com.example.midtermproject.auth_feature.data.mapper
+package com.example.midtermproject.auth_feature.data.remote.mapper
 
-import com.example.midtermproject.auth_feature.data.model.UserDto
+import com.example.midtermproject.auth_feature.data.remote.model.UserDto
 import com.example.midtermproject.auth_feature.domain.model.User
 
 fun User.toDto() : UserDto {

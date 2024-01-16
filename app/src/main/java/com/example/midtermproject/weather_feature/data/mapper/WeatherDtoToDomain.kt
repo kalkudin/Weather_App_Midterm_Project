@@ -6,7 +6,6 @@ import com.example.midtermproject.weather_feature.domain.model.WeatherInfo
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
-
 fun WeatherDto.toDomain(): WeatherInfo {
     val weatherDataList = this.hourlyData.times
         .zip(this.hourlyData.temperatures) { time: String, temperature: Double ->

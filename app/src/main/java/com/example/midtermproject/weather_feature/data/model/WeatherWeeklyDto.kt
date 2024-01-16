@@ -2,7 +2,7 @@ package com.example.midtermproject.weather_feature.data.model
 
 import com.squareup.moshi.Json
 
-data class WeatherDto(
+data class WeatherWeeklyDto(
     @Json(name = "hourly")
-    val hourlyData : WeatherDataDto
+    val hourlyData : WeatherWeeklyDataDto
 )

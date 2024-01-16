@@ -1,6 +1,6 @@
 package com.example.midtermproject.weather_feature.data.mapper
 
-import com.example.midtermproject.auth_feature.data.common.Resource
+import com.example.midtermproject.auth_feature.data.remote.common.Resource
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 

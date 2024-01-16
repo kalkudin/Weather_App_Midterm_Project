@@ -2,13 +2,13 @@ package com.example.midtermproject.weather_feature.presentation.weather_today
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.midtermproject.auth_feature.data.common.Resource
+import com.example.midtermproject.auth_feature.data.remote.common.Resource
 import com.example.midtermproject.auth_feature.domain.usecase.datastore_usecase.ClearSessionUseCase
 import com.example.midtermproject.weather_feature.domain.usecase.GetUserLocationUseCase
 import com.example.midtermproject.weather_feature.domain.usecase.GetWeatherUseCase
 import com.example.midtermproject.weather_feature.presentation.event.WeatherTodayEvent
 import com.example.midtermproject.weather_feature.presentation.mapper.formatTodayWeatherData
-import com.example.midtermproject.weather_feature.presentation.model.WeatherState
+import com.example.midtermproject.weather_feature.presentation.model.WeatherTodayState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -27,8 +27,8 @@ class WeatherTodayViewModel @Inject constructor(
     private val getUserLocationUseCase: GetUserLocationUseCase
 ): ViewModel() {
 
-    private val _weatherState = MutableStateFlow(WeatherState())
-    val weatherState: StateFlow<WeatherState> = _weatherState.asStateFlow()
+    private val _weatherState = MutableStateFlow(WeatherTodayState())
+    val weatherState: StateFlow<WeatherTodayState> = _weatherState.asStateFlow()
 
     private val _navigationFlow = MutableSharedFlow<WeatherNavigationEvent>()
     val navigationFlow : SharedFlow<WeatherNavigationEvent> = _navigationFlow.asSharedFlow()
@@ -51,7 +51,7 @@ class WeatherTodayViewModel @Inject constructor(
             if (location != null) {
                 fetchWeatherData(location.latitude, location.longitude)
             } else {
-                _weatherState.update { WeatherState(errorMessage = "Location not found") }
+                _weatherState.update { WeatherTodayState(errorMessage = "Location not found") }
             }
         }
     }
@@ -64,13 +64,13 @@ class WeatherTodayViewModel @Inject constructor(
                         val weatherInfo = result.data
                         val detailedWeatherInfo = formatTodayWeatherData(weatherInfo)
 
-                        _weatherState.update { WeatherState(detailedWeatherInfo = detailedWeatherInfo) }
+                        _weatherState.update { WeatherTodayState(detailedWeatherInfo = detailedWeatherInfo) }
                     }
                     is Resource.Error -> {
-                        _weatherState.update { WeatherState(errorMessage = result.errorMessage) }
+                        _weatherState.update { WeatherTodayState(errorMessage = result.errorMessage) }
                     }
                     is Resource.Loading -> {
-                        _weatherState.update { WeatherState(isLoading = true) }
+                        _weatherState.update { WeatherTodayState(isLoading = true) }
                     }
                 }
             }

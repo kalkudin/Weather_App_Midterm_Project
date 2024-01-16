@@ -3,7 +3,7 @@ package com.example.midtermproject.auth_feature.presentation.login
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.midtermproject.auth_feature.data.common.Resource
+import com.example.midtermproject.auth_feature.data.remote.common.Resource
 import com.example.midtermproject.auth_feature.domain.usecase.auth_usecase.LoginUserUseCase
 import com.example.midtermproject.auth_feature.domain.usecase.datastore_usecase.SaveSessionUseCase
 import com.example.midtermproject.auth_feature.presentation.event.LoginEvent

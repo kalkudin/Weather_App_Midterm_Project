@@ -1,7 +1,7 @@
 package com.example.midtermproject.weather_feature.data.common
 
 import android.util.Log
-import com.example.midtermproject.auth_feature.data.common.Resource
+import com.example.midtermproject.auth_feature.data.remote.common.Resource
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
