@@ -1,4 +1,4 @@
-package com.example.midtermproject.weather_feature.presentation.map
+package com.example.midtermproject.weather_feature.presentation.weather_today
 
 import android.annotation.SuppressLint
 import android.view.View
@@ -11,32 +11,24 @@ import androidx.navigation.fragment.findNavController
 import com.example.midtermproject.R
 import com.example.midtermproject.auth_feature.presentation.base.BaseFragment
 import com.example.midtermproject.databinding.FragmentWeatherTodayLayoutBinding
-import com.example.midtermproject.weather_feature.presentation.model.WeatherDetailedInfo
+import com.example.midtermproject.weather_feature.presentation.event.WeatherTodayEvent
 import com.example.midtermproject.weather_feature.presentation.model.WeatherState
+import com.example.midtermproject.weather_feature.presentation.model.WeatherTodayInfo
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
-import java.time.format.DateTimeFormatter
 
 @AndroidEntryPoint
 class WeatherTodayFragment : BaseFragment<FragmentWeatherTodayLayoutBinding>(FragmentWeatherTodayLayoutBinding::inflate) {
 
     private val weatherTodayViewModel : WeatherTodayViewModel by viewModels()
 
-    override fun bind() {
-    }
-
     override fun bindViewActionListeners() {
         bindLogoutBtn()
+        bindDetailsBtn()
     }
 
     override fun bindObservers() {
-        viewLifecycleOwner.lifecycleScope.launch {
-            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                weatherTodayViewModel.weatherState.collect { state ->
-                    handleWeatherState(state)
-                }
-            }
-        }
+        bindWeatherFlow()
         bindNavigationEvent()
     }
 
@@ -48,12 +40,31 @@ class WeatherTodayFragment : BaseFragment<FragmentWeatherTodayLayoutBinding>(Fra
         }
     }
 
+    private fun bindDetailsBtn() {
+        with(binding) {
+            btnNextPage.setOnClickListener {
+                weatherTodayViewModel.onEvent(WeatherTodayEvent.MoveToDetailsPage)
+            }
+        }
+    }
+
+    private fun bindWeatherFlow() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                weatherTodayViewModel.weatherState.collect { state ->
+                    handleWeatherState(state)
+                }
+            }
+        }
+    }
+
     private fun bindNavigationEvent() {
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED){
                 weatherTodayViewModel.navigationFlow.collect { event ->
                     when(event) {
                         is WeatherNavigationEvent.NavigateToHome -> navigateToHome()
+                        is WeatherNavigationEvent.NavigateToWeeklyWeather -> navigateToWeeklyWeather()
                     }
                 }
             }
@@ -63,7 +74,7 @@ class WeatherTodayFragment : BaseFragment<FragmentWeatherTodayLayoutBinding>(Fra
     private fun handleWeatherState(state: WeatherState) {
         binding.progressBar.visibility = if (state.isLoading) View.VISIBLE else View.GONE
 
-        state.detailedWeatherInfo?.getOrNull(2)?.let { detailedWeather ->
+        state.detailedWeatherInfo?.getOrNull(3)?.let { detailedWeather ->
             updateWeatherUI(detailedWeather)
         }
 
@@ -73,22 +84,23 @@ class WeatherTodayFragment : BaseFragment<FragmentWeatherTodayLayoutBinding>(Fra
     }
 
     @SuppressLint("SetTextI18n")
-    private fun updateWeatherUI(weather: WeatherDetailedInfo) {
-        val formattedTime = weather.time.format(DateTimeFormatter.ofPattern("HH:mm"))
-        val formattedTemp = "${weather.temperatureCelsius}°C"
-
-        binding.apply {
+    private fun updateWeatherUI(weather: WeatherTodayInfo) {
+        with(binding) {
             iconPrimary.setImageResource(weather.iconRes)
-            desc.text = weather.weatherDescription
-            time.text = "Time: $formattedTime"
-            humidity.text = "Humidity: ${weather.relativeHumidity}%"
-            temp.text = "Temp: $formattedTemp"
-            speed.text = "Wind Speed: ${weather.windSpeed} km/h"
-            humidityProgressBar.progress = weather.relativeHumidity
+            tvToday.text = weather.formattedDate
+            tvDate.text = weather.formattedTime
+            tvTemp.text = "${weather.temperatureCelsius}°C"
+            tvDesc.text = weather.weatherDescription
+            tvHumValue.text = "${weather.relativeHumidity}%"
+            tvWindValue.text = "${weather.windSpeed} km/h"
         }
     }
 
     private fun navigateToHome() {
         findNavController().navigate(R.id.action_weatherTodayFragment_to_homeFragment)
+    }
+
+    private fun navigateToWeeklyWeather() {
+        findNavController().navigate(R.id.action_weatherTodayFragment_to_weatherWeeklyFragment)
     }
 }

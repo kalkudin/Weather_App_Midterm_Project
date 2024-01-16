@@ -1,13 +1,13 @@
-package com.example.midtermproject.weather_feature.presentation.map
+package com.example.midtermproject.weather_feature.presentation.weather_today
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.midtermproject.auth_feature.data.common.Resource
 import com.example.midtermproject.auth_feature.domain.usecase.datastore_usecase.ClearSessionUseCase
 import com.example.midtermproject.weather_feature.domain.usecase.GetUserLocationUseCase
 import com.example.midtermproject.weather_feature.domain.usecase.GetWeatherUseCase
-import com.example.midtermproject.weather_feature.presentation.mapper.extractRelevantWeatherData
+import com.example.midtermproject.weather_feature.presentation.event.WeatherTodayEvent
+import com.example.midtermproject.weather_feature.presentation.mapper.formatTodayWeatherData
 import com.example.midtermproject.weather_feature.presentation.model.WeatherState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -37,6 +37,14 @@ class WeatherTodayViewModel @Inject constructor(
         fetchUserLocationAndWeather()
     }
 
+    fun onEvent(event : WeatherTodayEvent){
+        when(event) {
+            is WeatherTodayEvent.LogOut -> logout()
+            is WeatherTodayEvent.MoveToDetailsPage -> moveToWeeklyPage()
+            is WeatherTodayEvent.RefreshPage -> getFreshData()
+        }
+    }
+
     private fun fetchUserLocationAndWeather() {
         viewModelScope.launch {
             val location = getUserLocationUseCase()
@@ -54,18 +62,14 @@ class WeatherTodayViewModel @Inject constructor(
                 when (result) {
                     is Resource.Success -> {
                         val weatherInfo = result.data
-                        val detailedWeatherInfo = extractRelevantWeatherData(weatherInfo)
-
-                        Log.d("WeatherTodayViewModel", "Fetched detailed weather data: $detailedWeatherInfo")
+                        val detailedWeatherInfo = formatTodayWeatherData(weatherInfo)
 
                         _weatherState.update { WeatherState(detailedWeatherInfo = detailedWeatherInfo) }
                     }
                     is Resource.Error -> {
-                        Log.e("WeatherTodayViewModel", "Error fetching weather data: ${result.errorMessage}")
                         _weatherState.update { WeatherState(errorMessage = result.errorMessage) }
                     }
                     is Resource.Loading -> {
-                        Log.d("WeatherTodayViewModel", "Loading weather data")
                         _weatherState.update { WeatherState(isLoading = true) }
                     }
                 }
@@ -73,20 +77,25 @@ class WeatherTodayViewModel @Inject constructor(
         }
     }
 
-    fun onEvent(event : WeatherTodayEvent){
-        when(event) {
-            is WeatherTodayEvent.LogOut -> logout()
-        }
-    }
-
-    private fun logout(){
+    private fun logout() {
         viewModelScope.launch {
             clearSessionUseCase()
             _navigationFlow.emit(WeatherNavigationEvent.NavigateToHome)
         }
     }
+
+    private fun moveToWeeklyPage() {
+        viewModelScope.launch {
+            _navigationFlow.emit(WeatherNavigationEvent.NavigateToWeeklyWeather)
+        }
+    }
+
+    private fun getFreshData(){
+        fetchUserLocationAndWeather()
+    }
 }
 
 sealed class WeatherNavigationEvent {
     data object NavigateToHome : WeatherNavigationEvent()
+    data object NavigateToWeeklyWeather : WeatherNavigationEvent()
 }
