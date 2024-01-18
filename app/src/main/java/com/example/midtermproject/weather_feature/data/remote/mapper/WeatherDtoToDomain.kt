@@ -1,6 +1,6 @@
-package com.example.midtermproject.weather_feature.data.mapper
+package com.example.midtermproject.weather_feature.data.remote.mapper
 
-import com.example.midtermproject.weather_feature.data.model.WeatherDto
+import com.example.midtermproject.weather_feature.data.remote.model.WeatherDto
 import com.example.midtermproject.weather_feature.domain.model.WeatherData
 import com.example.midtermproject.weather_feature.domain.model.WeatherInfo
 import java.time.LocalDateTime
@@ -17,7 +17,7 @@ fun WeatherDto.toDomain(): WeatherInfo {
         .zip(this.hourlyData.windSpeed) { timeTempCodeTriple: Triple<String, Double, Int>,
                                           windSpeed: Double ->
             val (time, temperature, weatherCode) = timeTempCodeTriple
-            val relativeHumidity = this.hourlyData.relativeHumidity[this.hourlyData.times.indexOf(time)] // Get the corresponding relative humidity
+            val relativeHumidity = this.hourlyData.relativeHumidity[this.hourlyData.times.indexOf(time)]
             WeatherData(
                 time = LocalDateTime.parse(time, DateTimeFormatter.ISO_DATE_TIME),
                 temperatureCelsius = temperature,

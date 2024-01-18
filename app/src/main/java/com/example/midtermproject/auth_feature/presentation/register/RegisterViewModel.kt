@@ -2,7 +2,7 @@ package com.example.midtermproject.auth_feature.presentation.register
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.midtermproject.auth_feature.data.remote.common.Resource
+import com.example.midtermproject.auth_feature.data.common.Resource
 import com.example.midtermproject.auth_feature.domain.usecase.auth_usecase.RegisterUserUseCase
 import com.example.midtermproject.auth_feature.presentation.event.RegisterEvent
 import com.example.midtermproject.auth_feature.presentation.model.AuthState

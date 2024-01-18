@@ -3,7 +3,7 @@ package com.example.midtermproject.weather_feature.presentation.weather_weekly
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.midtermproject.auth_feature.data.remote.common.Resource
+import com.example.midtermproject.auth_feature.data.common.Resource
 import com.example.midtermproject.weather_feature.domain.usecase.GetUserLocationUseCase
 import com.example.midtermproject.weather_feature.domain.usecase.GetWeeklyWeatherUseCase
 import com.example.midtermproject.weather_feature.presentation.event.WeatherWeeklyEvent

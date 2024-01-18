@@ -1,6 +1,6 @@
 package com.example.midtermproject.auth_feature.domain.usecase.auth_usecase
 
-import com.example.midtermproject.auth_feature.data.remote.common.Resource
+import com.example.midtermproject.auth_feature.data.common.Resource
 import com.example.midtermproject.auth_feature.domain.model.User
 import com.example.midtermproject.auth_feature.domain.repository.UserRepository
 import com.example.midtermproject.auth_feature.util.AuthenticationUtil

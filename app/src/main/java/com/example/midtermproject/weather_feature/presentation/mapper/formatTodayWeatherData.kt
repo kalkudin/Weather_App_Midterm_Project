@@ -12,7 +12,7 @@ fun formatTodayWeatherData(weatherInfo: WeatherInfo): List<WeatherTodayDetails> 
     val dateOutputFormatter = DateTimeFormatter.ofPattern("MMMM dd", Locale.US)
     val timeOutputFormatter = DateTimeFormatter.ofPattern("HH:mm")
 
-    val relevantIndices = listOf(17)
+    val relevantIndices = listOf(15)
     return weatherInfo.currentWeatherData
         .filterIndexed { index, _ -> index in relevantIndices }
         .map { weatherData ->

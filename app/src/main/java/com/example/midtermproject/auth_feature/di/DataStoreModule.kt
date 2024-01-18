@@ -7,8 +7,6 @@ import androidx.datastore.preferences.core.PreferenceDataStoreFactory
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.emptyPreferences
 import androidx.datastore.preferences.preferencesDataStoreFile
-import com.example.midtermproject.auth_feature.data.local.repository.DataStoreRepositoryImpl
-import com.example.midtermproject.auth_feature.domain.repository.DataStoreRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -30,11 +28,5 @@ object DataStoreModule {
                 appContext.preferencesDataStoreFile("settings")
             }
         )
-    }
-
-    @Provides
-    @Singleton
-    fun provideUserDataStoreRepository(dataStore: DataStore<Preferences>): DataStoreRepository {
-        return DataStoreRepositoryImpl(dataStore)
     }
 }

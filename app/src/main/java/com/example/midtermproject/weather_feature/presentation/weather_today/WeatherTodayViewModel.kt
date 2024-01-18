@@ -2,7 +2,7 @@ package com.example.midtermproject.weather_feature.presentation.weather_today
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.midtermproject.auth_feature.data.remote.common.Resource
+import com.example.midtermproject.auth_feature.data.common.Resource
 import com.example.midtermproject.auth_feature.domain.usecase.datastore_usecase.ClearSessionUseCase
 import com.example.midtermproject.weather_feature.domain.usecase.GetUserLocationUseCase
 import com.example.midtermproject.weather_feature.domain.usecase.GetWeatherUseCase
@@ -47,10 +47,9 @@ class WeatherTodayViewModel @Inject constructor(
 
     private fun fetchUserLocationAndWeather() {
         viewModelScope.launch {
-            val location = getUserLocationUseCase()
-            if (location != null) {
+            getUserLocationUseCase()?.let { location ->
                 fetchWeatherData(location.latitude, location.longitude)
-            } else {
+            } ?: run {
                 _weatherState.update { WeatherTodayState(errorMessage = "Location not found") }
             }
         }

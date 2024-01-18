@@ -1,4 +1,4 @@
-package com.example.midtermproject.auth_feature.data.remote.common
+package com.example.midtermproject.auth_feature.data.common
 
 import com.example.midtermproject.auth_feature.data.remote.model.UserDto
 import com.google.android.gms.tasks.Task

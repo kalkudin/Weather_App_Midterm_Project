@@ -1,6 +1,6 @@
 package com.example.midtermproject.weather_feature.domain.usecase
 
-import com.example.midtermproject.auth_feature.data.remote.common.Resource
+import com.example.midtermproject.auth_feature.data.common.Resource
 import com.example.midtermproject.weather_feature.domain.model.WeatherWeeklyInfo
 import com.example.midtermproject.weather_feature.domain.repository.WeatherWeeklyRepository
 import kotlinx.coroutines.flow.Flow

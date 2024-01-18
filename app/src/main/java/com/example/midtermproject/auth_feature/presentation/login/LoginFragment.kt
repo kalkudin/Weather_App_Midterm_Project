@@ -7,7 +7,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import com.example.midtermproject.R
-import com.example.midtermproject.auth_feature.data.remote.common.Resource
+import com.example.midtermproject.auth_feature.data.common.Resource
 import com.example.midtermproject.auth_feature.presentation.base.BaseFragment
 import com.example.midtermproject.auth_feature.presentation.event.LoginEvent
 import com.example.midtermproject.auth_feature.presentation.model.AuthState

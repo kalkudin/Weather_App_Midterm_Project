@@ -1,12 +1,12 @@
-package com.example.midtermproject.weather_feature.data.mapper
+package com.example.midtermproject.weather_feature.data.remote.mapper
 
-import com.example.midtermproject.weather_feature.data.model.WeatherWeeklyDto
+import com.example.midtermproject.weather_feature.data.remote.model.WeatherWeeklyDto
 import com.example.midtermproject.weather_feature.domain.model.WeatherWeeklyData
 import com.example.midtermproject.weather_feature.domain.model.WeatherWeeklyInfo
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
-fun WeatherWeeklyDto.toDomainModel(): WeatherWeeklyInfo {
+fun WeatherWeeklyDto.toDomain(): WeatherWeeklyInfo {
     val weatherDataList = this.hourlyData.times
         .zip(this.hourlyData.temperatures) { time, temperature ->
             Pair(time, temperature)

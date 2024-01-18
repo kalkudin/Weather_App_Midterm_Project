@@ -1,6 +1,6 @@
-package com.example.midtermproject.weather_feature.data.service
+package com.example.midtermproject.weather_feature.data.remote.service
 
-import com.example.midtermproject.weather_feature.data.model.WeatherWeeklyDto
+import com.example.midtermproject.weather_feature.data.remote.model.WeatherWeeklyDto
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query

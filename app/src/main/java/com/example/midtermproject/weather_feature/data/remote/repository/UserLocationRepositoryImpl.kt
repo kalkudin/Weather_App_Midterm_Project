@@ -1,4 +1,4 @@
-package com.example.midtermproject.weather_feature.data.repository
+package com.example.midtermproject.weather_feature.data.remote.repository
 
 import android.Manifest
 import android.app.Application
@@ -15,7 +15,6 @@ class UserLocationRepositoryImpl @Inject constructor(
     private val fusedLocationProviderClient: FusedLocationProviderClient,
     private val application: Application
 ) : UserLocationRepository {
-
     override suspend fun getUserLocation(): Location? {
         val hasFineLocationPermission = ContextCompat.checkSelfPermission(
             application,

@@ -1,8 +1,8 @@
-package com.example.midtermproject.auth_feature.di
+package com.example.midtermproject.weather_feature.di
 
 import android.content.Context
-import com.example.midtermproject.weather_feature.data.service.WeatherDataService
-import com.example.midtermproject.weather_feature.data.service.WeatherWeeklyService
+import com.example.midtermproject.weather_feature.data.remote.service.WeatherDataService
+import com.example.midtermproject.weather_feature.data.remote.service.WeatherWeeklyService
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.squareup.moshi.Moshi

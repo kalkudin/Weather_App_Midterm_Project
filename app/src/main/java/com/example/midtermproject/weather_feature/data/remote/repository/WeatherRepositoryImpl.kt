@@ -1,10 +1,10 @@
-package com.example.midtermproject.weather_feature.data.repository
+package com.example.midtermproject.weather_feature.data.remote.repository
 
-import com.example.midtermproject.auth_feature.data.remote.common.Resource
+import com.example.midtermproject.auth_feature.data.common.Resource
 import com.example.midtermproject.weather_feature.data.common.HandleResponse
-import com.example.midtermproject.weather_feature.data.mapper.mapResource
-import com.example.midtermproject.weather_feature.data.mapper.toDomain
-import com.example.midtermproject.weather_feature.data.service.WeatherDataService
+import com.example.midtermproject.weather_feature.data.remote.mapper.mapResource
+import com.example.midtermproject.weather_feature.data.remote.mapper.toDomain
+import com.example.midtermproject.weather_feature.data.remote.service.WeatherDataService
 import com.example.midtermproject.weather_feature.domain.model.WeatherInfo
 import com.example.midtermproject.weather_feature.domain.repository.WeatherRepository
 import kotlinx.coroutines.flow.Flow
