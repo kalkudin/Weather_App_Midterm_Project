@@ -1,6 +1,5 @@
-package com.example.midtermproject.weather_feature.presentation.weather_weekly
+package com.example.midtermproject.weather_feature.presentation.waether_weekly
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.midtermproject.auth_feature.data.common.Resource
@@ -36,12 +35,18 @@ class WeatherWeeklyViewModel @Inject constructor(
         fetchUserLocationAndWeather()
     }
 
+    fun onEvent(event : WeatherWeeklyEvent) {
+        when(event) {
+            is WeatherWeeklyEvent.NavigateToPreviousFragment -> navigateBack()
+            is WeatherWeeklyEvent.ItemClicked -> navigateToWeekDayFragment(event.id)
+        }
+    }
+
     private fun fetchUserLocationAndWeather() {
         viewModelScope.launch {
-            val location = getUserLocationUseCase()
-            if (location != null) {
+            getUserLocationUseCase()?.let { location ->
                 fetchWeeklyWeatherData(location.latitude, location.longitude)
-            } else {
+            } ?: run {
                 _weatherWeeklyState.update { WeatherWeeklyState(errorMessage = "Location not found") }
             }
         }
@@ -52,32 +57,20 @@ class WeatherWeeklyViewModel @Inject constructor(
             getWeeklyWeatherUseCase(lat, long).collect { result ->
                 when (result) {
                     is Resource.Success -> {
-                        Log.d("WeatherWeeklyVM", "Weather data fetched successfully")
                         val detailedWeatherInfo = formatWeeklyWeatherData(result.data.weeklyWeatherData)
-                        Log.d("WeatherWeeklyVM", "Formatted Weekly Weather Data: $detailedWeatherInfo")
-                        _weatherWeeklyState.update {
-                            WeatherWeeklyState(isLoading = false, detailedWeatherInfo = detailedWeatherInfo)
-                        }
+                        _weatherWeeklyState.update { WeatherWeeklyState(detailedWeatherInfo = detailedWeatherInfo) }
                     }
+
                     is Resource.Error -> {
-                        _weatherWeeklyState.update {
-                            WeatherWeeklyState(isLoading = false, errorMessage = result.errorMessage)
-                        }
+                        _weatherWeeklyState.update { WeatherWeeklyState(errorMessage = result.errorMessage) }
                     }
+
                     is Resource.Loading -> {
-                        _weatherWeeklyState.update {
-                            WeatherWeeklyState(isLoading = true)
-                        }
+                        _weatherWeeklyState.update { WeatherWeeklyState(isLoading = true) }
                     }
                 }
             }
         }
-    }
-
-     fun onEvent(event : WeatherWeeklyEvent) {
-         when(event) {
-             is WeatherWeeklyEvent.NavigateBack -> navigateBack()
-         }
     }
 
     private fun navigateBack() {
@@ -85,8 +78,15 @@ class WeatherWeeklyViewModel @Inject constructor(
             _navigationFlow.emit(WeatherWeeklyNavigationEvent.NavigateBackToDaily)
         }
     }
+
+    private fun navigateToWeekDayFragment(id : Int) {
+        viewModelScope.launch {
+            _navigationFlow.emit(WeatherWeeklyNavigationEvent.NavigateToWeekDayFragment(id = id))
+        }
+    }
 }
 
 sealed class WeatherWeeklyNavigationEvent(){
     data object NavigateBackToDaily : WeatherWeeklyNavigationEvent()
+    data class NavigateToWeekDayFragment(val id : Int) : WeatherWeeklyNavigationEvent()
 }

@@ -1,4 +1,4 @@
-package com.example.midtermproject.weather_feature.presentation.model
+package com.example.midtermproject.weather_feature.presentation.util
 
 import com.example.midtermproject.R
 

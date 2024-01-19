@@ -11,9 +11,8 @@ import com.example.midtermproject.R
 import com.example.midtermproject.auth_feature.presentation.base.BaseFragment
 import com.example.midtermproject.databinding.FragmentWeatherWeeklyLayoutBinding
 import com.example.midtermproject.weather_feature.presentation.event.WeatherWeeklyEvent
+import com.example.midtermproject.weather_feature.presentation.model.WeatherWeeklyDetails
 import com.example.midtermproject.weather_feature.presentation.model.WeatherWeeklyState
-import com.example.midtermproject.weather_feature.presentation.weather_weekly.WeatherWeeklyNavigationEvent
-import com.example.midtermproject.weather_feature.presentation.weather_weekly.WeatherWeeklyViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -40,13 +39,15 @@ class WeatherWeeklyFragment : BaseFragment<FragmentWeatherWeeklyLayoutBinding>(F
     private fun bindBackButton() {
         with(binding) {
             btnBack.setOnClickListener {
-                weatherWeeklyViewModel.onEvent(WeatherWeeklyEvent.NavigateBack)
+                weatherWeeklyViewModel.onEvent(WeatherWeeklyEvent.NavigateToPreviousFragment)
             }
         }
     }
 
     private fun bindRecyclerView() {
-        weatherWeeklyAdapter = WeatherWeeklyRecyclerAdapter()
+        weatherWeeklyAdapter = WeatherWeeklyRecyclerAdapter(itemClickListener = { weatherWeeklyDetails ->
+            handleItemClick(weatherWeeklyDetails)
+        })
         binding.weatherWeeklyRecyclerView.apply {
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
             adapter = weatherWeeklyAdapter
@@ -69,6 +70,7 @@ class WeatherWeeklyFragment : BaseFragment<FragmentWeatherWeeklyLayoutBinding>(F
                 weatherWeeklyViewModel.navigationFlow.collect { event ->
                     when(event) {
                         is WeatherWeeklyNavigationEvent.NavigateBackToDaily -> navigateBack()
+                        is WeatherWeeklyNavigationEvent.NavigateToWeekDayFragment -> navigateToFragmentWithAction(event.id)
                         else -> {}
                     }
                 }
@@ -88,8 +90,17 @@ class WeatherWeeklyFragment : BaseFragment<FragmentWeatherWeeklyLayoutBinding>(F
         }
     }
 
+    private fun handleItemClick(weatherWeeklyDetails: WeatherWeeklyDetails) {
+        weatherWeeklyViewModel.onEvent(WeatherWeeklyEvent.ItemClicked(id = weatherWeeklyDetails.id))
+    }
+
     private fun navigateBack() {
         findNavController().navigate(R.id.action_weatherWeeklyFragment_to_weatherTodayFragment)
+    }
+
+    private fun navigateToFragmentWithAction(id : Int) {
+        val action =WeatherWeeklyFragmentDirections.actionWeatherWeeklyFragmentToWeatherWeekDayFragment(id)
+        findNavController().navigate(action)
     }
 
     private fun showErrorScreen(message : String) {

@@ -2,7 +2,7 @@ package com.example.midtermproject.weather_feature.presentation.mapper
 
 import com.example.midtermproject.weather_feature.domain.model.WeatherInfo
 import com.example.midtermproject.weather_feature.presentation.model.WeatherTodayDetails
-import com.example.midtermproject.weather_feature.presentation.model.WeatherType
+import com.example.midtermproject.weather_feature.presentation.util.WeatherType
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.Locale

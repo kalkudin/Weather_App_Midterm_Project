@@ -1,5 +1,7 @@
 package com.example.midtermproject.weather_feature.presentation.model
 
+import com.example.midtermproject.weather_feature.presentation.util.WeatherType
+
 data class WeatherTodayDetails(
     val formattedDate: String,
     val formattedTime: String,

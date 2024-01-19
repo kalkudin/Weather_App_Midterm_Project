@@ -9,18 +9,26 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.midtermproject.databinding.WeeklyWeatherItemLayoutBinding
 import com.example.midtermproject.weather_feature.presentation.model.WeatherWeeklyDetails
 
-class WeatherWeeklyRecyclerAdapter :
+class WeatherWeeklyRecyclerAdapter (
+    private val itemClickListener: (WeatherWeeklyDetails) -> Unit
+):
     ListAdapter<WeatherWeeklyDetails, WeatherWeeklyRecyclerAdapter.WeatherWeeklyViewHolder>(
         WeatherWeeklyDiffCallback()
     ) {
 
-    class WeatherWeeklyViewHolder(private val binding: WeeklyWeatherItemLayoutBinding) :
+    inner class WeatherWeeklyViewHolder(private val binding: WeeklyWeatherItemLayoutBinding) :
         RecyclerView.ViewHolder(binding.root) {
         @SuppressLint("SetTextI18n")
-        fun bind(weather: WeatherWeeklyDetails) {
-            binding.tvDate.text = weather.formattedDate
-            binding.tvTemp.text = "${weather.temperatureCelsius}°C"
-            binding.icIcon.setImageResource(weather.iconRes)
+        fun bind(weatherWeeklyDetails: WeatherWeeklyDetails) {
+            with(binding) {
+                tvDate.text = weatherWeeklyDetails.formattedDate
+                tvTemp.text = "${weatherWeeklyDetails.temperatureCelsius}°C"
+                icIcon.setImageResource(weatherWeeklyDetails.iconRes)
+
+                itemView.setOnClickListener {
+                    itemClickListener.invoke(weatherWeeklyDetails)
+                }
+            }
         }
     }
 

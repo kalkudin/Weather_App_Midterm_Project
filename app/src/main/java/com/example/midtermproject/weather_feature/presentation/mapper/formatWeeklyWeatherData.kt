@@ -1,7 +1,7 @@
 package com.example.midtermproject.weather_feature.presentation.mapper
 
 import com.example.midtermproject.weather_feature.domain.model.WeatherWeeklyData
-import com.example.midtermproject.weather_feature.presentation.model.WeatherType
+import com.example.midtermproject.weather_feature.presentation.util.WeatherType
 import com.example.midtermproject.weather_feature.presentation.model.WeatherWeeklyDetails
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter

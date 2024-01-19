@@ -60,9 +60,7 @@ class WeatherTodayViewModel @Inject constructor(
             getWeatherUseCase(lat, long).collect { result ->
                 when (result) {
                     is Resource.Success -> {
-                        val weatherInfo = result.data
-                        val detailedWeatherInfo = formatTodayWeatherData(weatherInfo)
-
+                        val detailedWeatherInfo = formatTodayWeatherData(result.data)
                         _weatherState.update { WeatherTodayState(detailedWeatherInfo = detailedWeatherInfo) }
                     }
                     is Resource.Error -> {

@@ -4,4 +4,14 @@ plugins {
     id("com.google.dagger.hilt.android") version "2.50" apply false
     id("com.google.gms.google-services") version "4.4.0" apply false
 }
+buildscript {
+    repositories {
+        google()
+    }
+    dependencies {
+        val nav_version = "2.7.6"
+        classpath("androidx.navigation:navigation-safe-args-gradle-plugin:$nav_version")
+    }
+}
+
 
