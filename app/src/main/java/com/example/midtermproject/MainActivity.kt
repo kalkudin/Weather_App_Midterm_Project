@@ -96,5 +96,4 @@ class MainActivity : AppCompatActivity() {
         intent.data = uri
         startActivity(intent)
     }
-
 }

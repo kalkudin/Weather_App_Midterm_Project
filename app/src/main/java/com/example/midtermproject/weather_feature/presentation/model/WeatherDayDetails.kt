@@ -2,7 +2,7 @@ package com.example.midtermproject.weather_feature.presentation.model
 
 import com.example.midtermproject.weather_feature.presentation.util.WeatherType
 
-data class WeatherTodayDetails(
+data class WeatherDayDetails(
     val formattedDate: String,
     val formattedTime: String,
     val temperatureCelsius: Double,

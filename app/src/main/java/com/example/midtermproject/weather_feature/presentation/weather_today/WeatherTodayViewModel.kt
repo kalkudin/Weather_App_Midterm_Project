@@ -8,7 +8,7 @@ import com.example.midtermproject.weather_feature.domain.usecase.GetUserLocation
 import com.example.midtermproject.weather_feature.domain.usecase.GetWeatherUseCase
 import com.example.midtermproject.weather_feature.presentation.event.WeatherTodayEvent
 import com.example.midtermproject.weather_feature.presentation.mapper.formatTodayWeatherData
-import com.example.midtermproject.weather_feature.presentation.model.WeatherTodayState
+import com.example.midtermproject.weather_feature.presentation.model.WeatherDayState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -27,8 +27,8 @@ class WeatherTodayViewModel @Inject constructor(
     private val getUserLocationUseCase: GetUserLocationUseCase
 ): ViewModel() {
 
-    private val _weatherState = MutableStateFlow(WeatherTodayState())
-    val weatherState: StateFlow<WeatherTodayState> = _weatherState.asStateFlow()
+    private val _weatherState = MutableStateFlow(WeatherDayState())
+    val weatherState: StateFlow<WeatherDayState> = _weatherState.asStateFlow()
 
     private val _navigationFlow = MutableSharedFlow<WeatherNavigationEvent>()
     val navigationFlow : SharedFlow<WeatherNavigationEvent> = _navigationFlow.asSharedFlow()
@@ -50,7 +50,7 @@ class WeatherTodayViewModel @Inject constructor(
             getUserLocationUseCase()?.let { location ->
                 fetchWeatherData(location.latitude, location.longitude)
             } ?: run {
-                _weatherState.update { WeatherTodayState(errorMessage = "Location not found") }
+                _weatherState.update { WeatherDayState(errorMessage = "Location not found") }
             }
         }
     }
@@ -61,13 +61,13 @@ class WeatherTodayViewModel @Inject constructor(
                 when (result) {
                     is Resource.Success -> {
                         val detailedWeatherInfo = formatTodayWeatherData(result.data)
-                        _weatherState.update { WeatherTodayState(detailedWeatherInfo = detailedWeatherInfo) }
+                        _weatherState.update { WeatherDayState(detailedWeatherInfo = detailedWeatherInfo) }
                     }
                     is Resource.Error -> {
-                        _weatherState.update { WeatherTodayState(errorMessage = result.errorMessage) }
+                        _weatherState.update { WeatherDayState(errorMessage = result.errorMessage) }
                     }
                     is Resource.Loading -> {
-                        _weatherState.update { WeatherTodayState(isLoading = true) }
+                        _weatherState.update { WeatherDayState(isLoading = true) }
                     }
                 }
             }

@@ -71,7 +71,6 @@ class WeatherWeeklyFragment : BaseFragment<FragmentWeatherWeeklyLayoutBinding>(F
                     when(event) {
                         is WeatherWeeklyNavigationEvent.NavigateBackToDaily -> navigateBack()
                         is WeatherWeeklyNavigationEvent.NavigateToWeekDayFragment -> navigateToFragmentWithAction(event.id)
-                        else -> {}
                     }
                 }
             }

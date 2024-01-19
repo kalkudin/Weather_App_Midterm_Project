@@ -12,8 +12,8 @@ import com.example.midtermproject.R
 import com.example.midtermproject.auth_feature.presentation.base.BaseFragment
 import com.example.midtermproject.databinding.FragmentWeatherTodayLayoutBinding
 import com.example.midtermproject.weather_feature.presentation.event.WeatherTodayEvent
-import com.example.midtermproject.weather_feature.presentation.model.WeatherTodayDetails
-import com.example.midtermproject.weather_feature.presentation.model.WeatherTodayState
+import com.example.midtermproject.weather_feature.presentation.model.WeatherDayDetails
+import com.example.midtermproject.weather_feature.presentation.model.WeatherDayState
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -71,7 +71,7 @@ class WeatherTodayFragment : BaseFragment<FragmentWeatherTodayLayoutBinding>(Fra
         }
     }
 
-    private fun handleWeatherState(state: WeatherTodayState) {
+    private fun handleWeatherState(state: WeatherDayState) {
         binding.progressBar.visibility = if (state.isLoading) View.VISIBLE else View.GONE
 
         state.detailedWeatherInfo?.firstOrNull()?.let { detailedWeather ->
@@ -84,7 +84,7 @@ class WeatherTodayFragment : BaseFragment<FragmentWeatherTodayLayoutBinding>(Fra
     }
 
     @SuppressLint("SetTextI18n")
-    private fun updateWeatherUI(weather: WeatherTodayDetails) {
+    private fun updateWeatherUI(weather: WeatherDayDetails) {
         with(binding) {
             iconPrimary.setImageResource(weather.iconRes)
             tvToday.text = weather.formattedDate

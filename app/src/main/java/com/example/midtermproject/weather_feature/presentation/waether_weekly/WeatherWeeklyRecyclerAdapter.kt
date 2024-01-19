@@ -11,10 +11,7 @@ import com.example.midtermproject.weather_feature.presentation.model.WeatherWeek
 
 class WeatherWeeklyRecyclerAdapter (
     private val itemClickListener: (WeatherWeeklyDetails) -> Unit
-):
-    ListAdapter<WeatherWeeklyDetails, WeatherWeeklyRecyclerAdapter.WeatherWeeklyViewHolder>(
-        WeatherWeeklyDiffCallback()
-    ) {
+): ListAdapter<WeatherWeeklyDetails, WeatherWeeklyRecyclerAdapter.WeatherWeeklyViewHolder>(WeatherWeeklyDiffCallback()) {
 
     inner class WeatherWeeklyViewHolder(private val binding: WeeklyWeatherItemLayoutBinding) :
         RecyclerView.ViewHolder(binding.root) {
