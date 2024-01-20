@@ -7,10 +7,10 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import com.example.midtermproject.R
-import com.example.midtermproject.databinding.FragmentRegisterLayoutBinding
 import com.example.midtermproject.auth_feature.presentation.base.BaseFragment
 import com.example.midtermproject.auth_feature.presentation.event.RegisterEvent
 import com.example.midtermproject.auth_feature.presentation.model.AuthState
+import com.example.midtermproject.databinding.FragmentRegisterLayoutBinding
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -112,17 +112,5 @@ class RegisterFragment :
 
     private fun showError(errorMessage : String){
         Snackbar.make(binding.root, errorMessage, Snackbar.LENGTH_LONG).setAction("OK") {}.show()
-    }
-
-    private fun showProgressBar(){
-        with(binding){
-            progressBar.visibility = View.VISIBLE
-        }
-    }
-
-    private fun hideProgressBar(){
-        with(binding){
-            progressBar.visibility = View.GONE
-        }
     }
 }

@@ -7,7 +7,6 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import com.example.midtermproject.R
-import com.example.midtermproject.auth_feature.data.common.Resource
 import com.example.midtermproject.auth_feature.presentation.base.BaseFragment
 import com.example.midtermproject.auth_feature.presentation.event.LoginEvent
 import com.example.midtermproject.auth_feature.presentation.model.AuthState
@@ -116,17 +115,5 @@ class LoginFragment : BaseFragment<FragmentLoginLayoutBinding>(FragmentLoginLayo
 
     private fun showError(errorMessage : String){
         Snackbar.make(binding.root, errorMessage, Snackbar.LENGTH_LONG).setAction("OK"){}.show()
-    }
-
-    private fun showProgressBar(){
-        with(binding){
-            progressBar.visibility = View.VISIBLE
-        }
-    }
-
-    private fun hideProgressBar(){
-        with(binding){
-            progressBar.visibility = View.GONE
-        }
     }
 }

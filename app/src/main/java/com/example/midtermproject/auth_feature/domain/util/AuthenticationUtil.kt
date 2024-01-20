@@ -1,4 +1,4 @@
-package com.example.midtermproject.auth_feature.util
+package com.example.midtermproject.auth_feature.domain.util
 
 import javax.inject.Inject
 

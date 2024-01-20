@@ -1,12 +1,12 @@
 <resources>
     <string name="app_name">Midterm Project</string>
-    <string name="email">email</string>
-    <string name="password">password</string>
-    <string name="repeat_password">repeat password</string>
-    <string name="register">register</string>
-    <string name="already_registered_login">already registered? login</string>
-    <string name="login">login</string>
-    <string name="not_registered_yet_register_here">not signed up yet? register here</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="repeat_password">Repeat Password</string>
+    <string name="register">Register</string>
+    <string name="already_registered_login">Already Registered? Login</string>
+    <string name="login">Login</string>
+    <string name="not_registered_yet_register_here">Not Signed up Yet? Register Here</string>
     <string name="remember_me">Remember Me</string>
     <string name="log_out">Log out</string>
     <string name="today">Today</string>
@@ -18,7 +18,7 @@
     <string name="hum_value">Hum value</string>
     <string name="hum">Hum</string>
     <string name="more_details">Weekly Weather</string>
-    <string name="back">back</string>
+    <string name="back">Back</string>
     <string name="date">Wednesday, January 16</string>
     <string name="temp">temp</string>
     <string name="next_forecasts">Next Forecasts</string>

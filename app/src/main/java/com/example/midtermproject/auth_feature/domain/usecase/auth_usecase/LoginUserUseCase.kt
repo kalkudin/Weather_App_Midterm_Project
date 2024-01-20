@@ -3,7 +3,7 @@ package com.example.midtermproject.auth_feature.domain.usecase.auth_usecase
 import com.example.midtermproject.auth_feature.data.common.Resource
 import com.example.midtermproject.auth_feature.domain.model.User
 import com.example.midtermproject.auth_feature.domain.repository.UserRepository
-import com.example.midtermproject.auth_feature.util.AuthenticationUtil
+import com.example.midtermproject.auth_feature.domain.util.AuthenticationUtil
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOf
 import javax.inject.Inject
