@@ -1,6 +1,0 @@
-package com.example.midtermproject.auth_feature.domain.model
-
-data class User(
-    val email: String,
-    val password: String
-)

@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.example.midtermproject.auth_feature.presentation.login.LoginFragment"
+        android:name="com.example.midtermproject.presentation.auth_feature.login.LoginFragment"
         android:label="LoginFragment">
         <action
             android:id="@+id/action_loginFragment_to_homeFragment"
@@ -20,7 +20,7 @@
     </fragment>
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.example.midtermproject.auth_feature.presentation.home.HomeFragment"
+        android:name="com.example.midtermproject.presentation.auth_feature.home.HomeFragment"
         android:label="HomeFragment">
         <action
             android:id="@+id/action_homeFragment_to_loginFragment"
@@ -34,7 +34,7 @@
     </fragment>
     <fragment
         android:id="@+id/registerFragment"
-        android:name="com.example.midtermproject.auth_feature.presentation.register.RegisterFragment"
+        android:name="com.example.midtermproject.presentation.auth_feature.register.RegisterFragment"
         android:label="RegisterFragment">
         <action
             android:id="@+id/action_registerFragment_to_homeFragment"
@@ -45,7 +45,7 @@
     </fragment>
     <fragment
         android:id="@+id/weatherTodayFragment"
-        android:name="com.example.midtermproject.weather_feature.presentation.weather_today.WeatherTodayFragment"
+        android:name="com.example.midtermproject.presentation.weather_feature.weather_today.WeatherTodayFragment"
         android:label="WeatherTodayFragment">
         <action
             android:id="@+id/action_weatherTodayFragment_to_homeFragment"
@@ -59,7 +59,7 @@
     </fragment>
     <fragment
         android:id="@+id/weatherWeeklyFragment"
-        android:name="com.example.midtermproject.weather_feature.presentation.waether_weekly.WeatherWeeklyFragment"
+        android:name="com.example.midtermproject.presentation.weather_feature.waether_weekly.WeatherWeeklyFragment"
         android:label="WeatherWeeklyFragment">
         <action
             android:id="@+id/action_weatherWeeklyFragment_to_weatherTodayFragment"
@@ -70,7 +70,7 @@
     </fragment>
     <fragment
         android:id="@+id/weatherWeekDayFragment"
-        android:name="com.example.midtermproject.weather_feature.presentation.weather_week_day.WeatherWeekDayFragment"
+        android:name="com.example.midtermproject.presentation.weather_feature.weather_week_day.WeatherWeekDayFragment"
         android:label="WeatherWeekDayFragment">
         <action
             android:id="@+id/action_weatherWeekDayFragment_to_weatherWeeklyFragment"
@@ -82,7 +82,7 @@
     </fragment>
     <fragment
         android:id="@+id/weatherCityFragment"
-        android:name="com.example.midtermproject.weather_feature.presentation.weather_city.WeatherCityFragment"
+        android:name="com.example.midtermproject.presentation.weather_feature.weather_city.WeatherCityFragment"
         android:label="WeatherCityFragment" >
         <action
             android:id="@+id/action_weatherCityFragment_to_weatherTodayFragment"
