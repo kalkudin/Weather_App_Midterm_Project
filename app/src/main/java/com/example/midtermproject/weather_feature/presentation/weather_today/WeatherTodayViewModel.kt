@@ -42,6 +42,7 @@ class WeatherTodayViewModel @Inject constructor(
             is WeatherTodayEvent.LogOut -> logout()
             is WeatherTodayEvent.MoveToDetailsPage -> moveToWeeklyPage()
             is WeatherTodayEvent.RefreshPage -> getFreshData()
+            is WeatherTodayEvent.NavigateToCityWeather -> navigateToCityWeather()
         }
     }
 
@@ -87,6 +88,12 @@ class WeatherTodayViewModel @Inject constructor(
         }
     }
 
+    private fun navigateToCityWeather() {
+        viewModelScope.launch {
+            _navigationFlow.emit(WeatherNavigationEvent.NavigateToCityWeather)
+        }
+    }
+
     private fun getFreshData(){
         fetchUserLocationAndWeather()
     }
@@ -95,4 +102,5 @@ class WeatherTodayViewModel @Inject constructor(
 sealed class WeatherNavigationEvent {
     data object NavigateToHome : WeatherNavigationEvent()
     data object NavigateToWeeklyWeather : WeatherNavigationEvent()
+    data object NavigateToCityWeather : WeatherNavigationEvent()
 }

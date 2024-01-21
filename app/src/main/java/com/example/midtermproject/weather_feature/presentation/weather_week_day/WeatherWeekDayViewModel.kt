@@ -35,27 +35,25 @@ class WeatherWeekDayViewModel @Inject constructor(
     fun onEvent(event : WeatherWeekDayEvent) {
         when(event) {
             is WeatherWeekDayEvent.NavigateToPreviousFragment -> navigateBack()
-            is WeatherWeekDayEvent.LoadWeatherWithUserId -> fetchUserLocationAndWeather(id = event.id)
+            is WeatherWeekDayEvent.LoadWeatherWithUserId -> getUserLocationAndWeather(id = event.id)
         }
     }
 
-    private fun fetchUserLocationAndWeather(id : Int) {
+    private fun getUserLocationAndWeather(id : Int) {
         viewModelScope.launch {
             getUserLocationUseCase()?.let { location ->
-                fetchWeatherData(location.latitude, location.longitude, id = id)
+                getWeatherData(location.latitude, location.longitude, id = id)
             } ?: run {
                 _weatherState.update { WeatherDayState(errorMessage = "Location not found") }
             }
         }
     }
 
-    private fun fetchWeatherData(lat: Double, long: Double, id: Int) {
+    private fun getWeatherData(lat: Double, long: Double, id: Int) {
         viewModelScope.launch {
-            Log.d("WeatherVM", "Fetching weather data for lat: $lat, long: $long, id: $id")
             getWeatherUseCase(lat, long).collect { result ->
                 when (result) {
                     is Resource.Success -> {
-                        Log.d("WeatherVM", "Weather data fetched successfully")
                         val detailedWeatherInfo = formatWeekDayWeatherData(result.data, id = id)
                         Log.d("WeatherVM", "Formatted weather data: $detailedWeatherInfo")
                         _weatherState.update { WeatherDayState(detailedWeatherInfo = detailedWeatherInfo) }

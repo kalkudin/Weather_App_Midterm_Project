@@ -1,12 +1,15 @@
 package com.example.midtermproject.weather_feature.di
 
 import android.app.Application
+import android.location.Geocoder
 import com.example.midtermproject.weather_feature.data.common.HandleResponse
+import com.example.midtermproject.weather_feature.data.remote.repository.CityLocationRepositoryImpl
 import com.example.midtermproject.weather_feature.data.remote.repository.UserLocationRepositoryImpl
 import com.example.midtermproject.weather_feature.data.remote.repository.WeatherRepositoryImpl
 import com.example.midtermproject.weather_feature.data.remote.repository.WeatherWeeklyRepositoryImpl
 import com.example.midtermproject.weather_feature.data.remote.service.WeatherDataService
 import com.example.midtermproject.weather_feature.data.remote.service.WeatherWeeklyService
+import com.example.midtermproject.weather_feature.domain.repository.CityLocationRepository
 import com.example.midtermproject.weather_feature.domain.repository.UserLocationRepository
 import com.example.midtermproject.weather_feature.domain.repository.WeatherRepository
 import com.example.midtermproject.weather_feature.domain.repository.WeatherWeeklyRepository
@@ -39,5 +42,13 @@ object RepositoryModule {
         application: Application
     ): UserLocationRepository {
         return UserLocationRepositoryImpl(fusedLocationProviderClient, application)
+    }
+
+    @Provides
+    @Singleton
+    fun provideCityLocationRepository(
+        geocoder: Geocoder
+    ): CityLocationRepository {
+        return CityLocationRepositoryImpl(geocoder)
     }
 }

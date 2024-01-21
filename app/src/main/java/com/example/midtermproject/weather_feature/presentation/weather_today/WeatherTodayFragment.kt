@@ -25,6 +25,7 @@ class WeatherTodayFragment : BaseFragment<FragmentWeatherTodayLayoutBinding>(Fra
     override fun bindViewActionListeners() {
         bindLogoutBtn()
         bindDetailsBtn()
+        bindCityNavigationButton()
     }
 
     override fun bindObservers() {
@@ -48,6 +49,14 @@ class WeatherTodayFragment : BaseFragment<FragmentWeatherTodayLayoutBinding>(Fra
         }
     }
 
+    private fun bindCityNavigationButton() {
+        with(binding) {
+            btnCitySearch.setOnClickListener {
+                weatherTodayViewModel.onEvent(WeatherTodayEvent.NavigateToCityWeather)
+            }
+        }
+    }
+
     private fun bindWeatherFlow() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
@@ -65,6 +74,7 @@ class WeatherTodayFragment : BaseFragment<FragmentWeatherTodayLayoutBinding>(Fra
                     when(event) {
                         is WeatherNavigationEvent.NavigateToHome -> navigateToHome()
                         is WeatherNavigationEvent.NavigateToWeeklyWeather -> navigateToWeeklyWeather()
+                        is WeatherNavigationEvent.NavigateToCityWeather -> navigateToCityWeather()
                     }
                 }
             }
@@ -102,5 +112,8 @@ class WeatherTodayFragment : BaseFragment<FragmentWeatherTodayLayoutBinding>(Fra
 
     private fun navigateToWeeklyWeather() {
         findNavController().navigate(R.id.action_weatherTodayFragment_to_weatherWeeklyFragment)
+    }
+    private fun navigateToCityWeather() {
+        findNavController().navigate(R.id.action_weatherTodayFragment_to_weatherCityFragment)
     }
 }

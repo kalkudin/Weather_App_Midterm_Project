@@ -48,5 +48,4 @@ class WeatherWeeklyRecyclerAdapter (
             return oldItem == newItem
         }
     }
-
 }

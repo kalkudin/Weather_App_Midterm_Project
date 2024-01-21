@@ -30,6 +30,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/appCompatTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
@@ -39,6 +40,20 @@
         android:textColor="@color/white"
         android:textSize="24sp"
         app:layout_constraintStart_toEndOf="@+id/btn_logout"
+        app:layout_constraintTop_toTopOf="@+id/btn_logout" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/btn_city_search"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="1dp"
+        android:fontFamily="@font/overpass_m"
+        android:text="Search For A City"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/appCompatTextView"
         app:layout_constraintTop_toTopOf="@+id/btn_logout" />
 
     <androidx.appcompat.widget.AppCompatImageView

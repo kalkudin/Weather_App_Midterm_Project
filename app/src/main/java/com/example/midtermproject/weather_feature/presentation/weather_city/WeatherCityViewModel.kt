@@ -1,14 +1,89 @@
 package com.example.midtermproject.weather_feature.presentation.weather_city
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.example.midtermproject.auth_feature.data.common.Resource
+import com.example.midtermproject.weather_feature.domain.usecase.GetCoordinatesUseCase
+import com.example.midtermproject.weather_feature.domain.usecase.GetWeeklyWeatherUseCase
 import com.example.midtermproject.weather_feature.presentation.event.WeatherCityEvent
+import com.example.midtermproject.weather_feature.presentation.mapper.formatCityWeatherData
+import com.example.midtermproject.weather_feature.presentation.model.WeatherCityState
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharedFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asSharedFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class WeatherCityViewModel @Inject constructor() : ViewModel() {
+class WeatherCityViewModel @Inject constructor(
+    private val getCoordinatesUseCase: GetCoordinatesUseCase,
+    private val getWeeklyWeatherUseCase: GetWeeklyWeatherUseCase
+) : ViewModel() {
 
-    fun onEvent(event : WeatherCityEvent) {
+    private val _weatherCityState = MutableStateFlow(WeatherCityState())
+    val weatherCityState : StateFlow<WeatherCityState> = _weatherCityState.asStateFlow()
 
+    private val _navigationFlow = MutableSharedFlow<WeatherCityNavigationEvent>()
+    val navigationFlow: SharedFlow<WeatherCityNavigationEvent> = _navigationFlow.asSharedFlow()
+
+    fun onEvent(event: WeatherCityEvent) {
+        when (event) {
+            is WeatherCityEvent.GetWeatherForCity -> getCityCoordinates(city = event.city)
+            is WeatherCityEvent.WeatherItemClicked -> navigateToWeekDayFragment(event.id)
+            is WeatherCityEvent.NavigateBack -> navigateBack()
+        }
     }
+
+    private fun getCityCoordinates(city: String) {
+        viewModelScope.launch {
+            getCoordinatesUseCase(cityName = city).collect { result ->
+                Log.d("GeocodingResult", "Result for $city: $result")
+                result.onSuccess { latLng ->
+                    getWeatherForCity(lat = latLng.latitude, long = latLng.longitude)
+                }
+            }
+        }
+    }
+
+    private fun getWeatherForCity(lat : Double, long : Double) {
+        viewModelScope.launch {
+            getWeeklyWeatherUseCase(lat = lat, long = long).collect() { result ->
+                when(result) {
+                    is Resource.Success -> {
+                        val cityWeatherInfo = formatCityWeatherData(result.data.weeklyWeatherData, lat = lat, long = long)
+                        _weatherCityState.update { WeatherCityState(detailedWeatherInfo = cityWeatherInfo) }
+                    }
+                    is Resource.Error -> {
+                        _weatherCityState.update { WeatherCityState(errorMessage = result.errorMessage) }
+                    }
+                    is Resource.Loading -> {
+                        _weatherCityState.update { WeatherCityState(isLoading = true) }
+                    }
+                }
+            }
+        }
+    }
+
+    private fun navigateToWeekDayFragment(id: Int) {
+        viewModelScope.launch {
+            _navigationFlow.emit(WeatherCityNavigationEvent.NavigateToItemClicked(id = id))
+        }
+    }
+
+    private fun navigateBack() {
+        viewModelScope.launch {
+            _navigationFlow.emit(WeatherCityNavigationEvent.NavigateBack)
+        }
+    }
+}
+
+sealed class WeatherCityNavigationEvent {
+    data object NavigateBack : WeatherCityNavigationEvent()
+    data class NavigateToItemClicked(val id: Int) : WeatherCityNavigationEvent()
 }

@@ -1,6 +1,8 @@
 package com.example.midtermproject.weather_feature.di
 
+import android.app.Application
 import android.content.Context
+import android.location.Geocoder
 import com.example.midtermproject.weather_feature.data.remote.service.WeatherDataService
 import com.example.midtermproject.weather_feature.data.remote.service.WeatherWeeklyService
 import com.google.android.gms.location.FusedLocationProviderClient
@@ -72,5 +74,11 @@ object AppModule {
     @Singleton
     fun provideFusedLocationProviderClient(@ApplicationContext context: Context): FusedLocationProviderClient {
         return LocationServices.getFusedLocationProviderClient(context)
+    }
+
+    @Provides
+    @Singleton
+    fun provideGeocoder(application: Application): Geocoder {
+        return Geocoder(application)
     }
 }

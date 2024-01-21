@@ -53,6 +53,9 @@
         <action
             android:id="@+id/action_weatherTodayFragment_to_weatherWeeklyFragment"
             app:destination="@id/weatherWeeklyFragment" />
+        <action
+            android:id="@+id/action_weatherTodayFragment_to_weatherCityFragment"
+            app:destination="@id/weatherCityFragment" />
     </fragment>
     <fragment
         android:id="@+id/weatherWeeklyFragment"
@@ -80,5 +83,9 @@
     <fragment
         android:id="@+id/weatherCityFragment"
         android:name="com.example.midtermproject.weather_feature.presentation.weather_city.WeatherCityFragment"
-        android:label="WeatherCityFragment" />
+        android:label="WeatherCityFragment" >
+        <action
+            android:id="@+id/action_weatherCityFragment_to_weatherTodayFragment"
+            app:destination="@id/weatherTodayFragment" />
+    </fragment>
 </navigation>
