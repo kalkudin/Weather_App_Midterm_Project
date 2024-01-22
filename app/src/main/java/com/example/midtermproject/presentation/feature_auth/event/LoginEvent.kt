@@ -1,4 +1,4 @@
-package com.example.midtermproject.presentation.auth_feature.event
+package com.example.midtermproject.presentation.feature_auth.event
 
 sealed class LoginEvent {
     data class LoginUser(val email : String , val password : String) : LoginEvent()

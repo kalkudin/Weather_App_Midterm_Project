@@ -1,4 +1,4 @@
-package com.example.midtermproject.presentation.weather_feature.weather_city
+package com.example.midtermproject.presentation.feature_weather.weather_city
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.midtermproject.databinding.CityWeatherItemLayoutBinding
-import com.example.midtermproject.presentation.weather_feature.model.WeatherCityDetails
+import com.example.midtermproject.presentation.feature_weather.model.WeatherCityDetails
 
 class WeatherCityRecyclerAdapter : ListAdapter<WeatherCityDetails, WeatherCityRecyclerAdapter.WeatherCityViewHolder>(
     WeatherCityDiffCallback()

@@ -1,4 +1,4 @@
-package com.example.midtermproject.presentation.weather_feature.weather_city
+package com.example.midtermproject.presentation.feature_weather.weather_city
 
 import android.util.Log
 import android.view.View
@@ -11,8 +11,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.midtermproject.R
 import com.example.midtermproject.databinding.FragmentWeatherCityLayoutBinding
 import com.example.midtermproject.presentation.base.BaseFragment
-import com.example.midtermproject.presentation.weather_feature.event.WeatherCityEvent
-import com.example.midtermproject.presentation.weather_feature.model.WeatherCityState
+import com.example.midtermproject.presentation.feature_weather.event.WeatherCityEvent
+import com.example.midtermproject.presentation.feature_weather.model.WeatherCityState
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 

@@ -1,11 +1,11 @@
-package com.example.midtermproject.presentation.auth_feature.register
+package com.example.midtermproject.presentation.feature_auth.register
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.midtermproject.data.common.Resource
 import com.example.midtermproject.domain.feature_auth.usecase.auth_usecase.RegisterUserUseCase
-import com.example.midtermproject.presentation.auth_feature.event.RegisterEvent
-import com.example.midtermproject.presentation.auth_feature.model.AuthState
+import com.example.midtermproject.presentation.feature_auth.event.RegisterEvent
+import com.example.midtermproject.presentation.feature_auth.model.AuthState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow

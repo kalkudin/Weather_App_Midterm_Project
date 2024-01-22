@@ -1,7 +1,7 @@
 package com.example.midtermproject.domain.feature_auth.usecase.auth_usecase
 
 import com.example.midtermproject.data.common.Resource
-import com.example.midtermproject.domain.auth_feature.model.User
+import com.example.midtermproject.domain.feature_auth.model.User
 import com.example.midtermproject.domain.feature_auth.repository.UserRepository
 import com.example.midtermproject.domain.feature_auth.util.AuthenticationUtil
 import kotlinx.coroutines.flow.Flow

@@ -1,4 +1,4 @@
-package com.example.midtermproject.presentation.weather_feature.model
+package com.example.midtermproject.presentation.feature_weather.model
 
 data class WeatherWeeklyState(
     val isLoading: Boolean = false,

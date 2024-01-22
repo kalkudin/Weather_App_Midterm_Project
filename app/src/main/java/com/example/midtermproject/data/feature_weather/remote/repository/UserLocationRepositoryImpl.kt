@@ -6,7 +6,7 @@ import android.content.pm.PackageManager
 import android.location.Location
 import android.util.Log
 import androidx.core.content.ContextCompat
-import com.example.midtermproject.domain.weather_feature.repository.UserLocationRepository
+import com.example.midtermproject.domain.feature_weather.repository.UserLocationRepository
 import com.google.android.gms.location.FusedLocationProviderClient
 import kotlinx.coroutines.tasks.await
 import javax.inject.Inject

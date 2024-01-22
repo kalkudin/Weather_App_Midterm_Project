@@ -1,7 +1,7 @@
-package com.example.midtermproject.domain.weather_feature.usecase
+package com.example.midtermproject.domain.feature_weather.usecase
 
 import android.location.Location
-import com.example.midtermproject.domain.weather_feature.repository.UserLocationRepository
+import com.example.midtermproject.domain.feature_weather.repository.UserLocationRepository
 import javax.inject.Inject
 
 class GetUserLocationUseCase @Inject constructor(

@@ -1,4 +1,4 @@
-package com.example.midtermproject.presentation.auth_feature.model
+package com.example.midtermproject.presentation.feature_auth.model
 
 data class AuthState(
     val isLoading: Boolean = false,

@@ -1,4 +1,4 @@
-package com.example.midtermproject.presentation.weather_feature.waether_weekly
+package com.example.midtermproject.presentation.feature_weather.waether_weekly
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.midtermproject.databinding.WeeklyWeatherItemLayoutBinding
-import com.example.midtermproject.presentation.weather_feature.model.WeatherWeeklyDetails
+import com.example.midtermproject.presentation.feature_weather.model.WeatherWeeklyDetails
 
 class WeatherWeeklyRecyclerAdapter (
     private val itemClickListener: (WeatherWeeklyDetails) -> Unit

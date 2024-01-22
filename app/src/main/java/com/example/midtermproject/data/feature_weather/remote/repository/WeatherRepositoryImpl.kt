@@ -5,8 +5,8 @@ import com.example.midtermproject.data.common.HandleResponse
 import com.example.midtermproject.data.feature_weather.remote.mapper.mapResource
 import com.example.midtermproject.data.feature_weather.remote.mapper.toDomain
 import com.example.midtermproject.data.feature_weather.remote.service.WeatherDataService
-import com.example.midtermproject.domain.weather_feature.model.WeatherInfo
-import com.example.midtermproject.domain.weather_feature.repository.WeatherRepository
+import com.example.midtermproject.domain.feature_weather.model.WeatherInfo
+import com.example.midtermproject.domain.feature_weather.repository.WeatherRepository
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 

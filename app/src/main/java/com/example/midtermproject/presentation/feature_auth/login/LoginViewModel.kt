@@ -1,13 +1,12 @@
-package com.example.midtermproject.presentation.auth_feature.login
+package com.example.midtermproject.presentation.feature_auth.login
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.midtermproject.data.common.Resource
 import com.example.midtermproject.domain.feature_auth.usecase.auth_usecase.LoginUserUseCase
 import com.example.midtermproject.domain.feature_auth.usecase.datastore_usecase.SaveSessionUseCase
-import com.example.midtermproject.presentation.auth_feature.event.LoginEvent
-import com.example.midtermproject.presentation.auth_feature.model.AuthState
+import com.example.midtermproject.presentation.feature_auth.event.LoginEvent
+import com.example.midtermproject.presentation.feature_auth.model.AuthState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -85,7 +84,6 @@ class LoginViewModel @Inject constructor(
             _navigationFlow.emit(LoginNavigationEvent.NavigateUserToWeather)
         }
     }
-
 }
 
 sealed class LoginNavigationEvent {

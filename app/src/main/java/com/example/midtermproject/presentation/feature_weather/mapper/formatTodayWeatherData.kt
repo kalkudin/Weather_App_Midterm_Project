@@ -1,8 +1,8 @@
-package com.example.midtermproject.presentation.weather_feature.mapper
+package com.example.midtermproject.presentation.feature_weather.mapper
 
-import com.example.midtermproject.domain.weather_feature.model.WeatherInfo
-import com.example.midtermproject.presentation.weather_feature.model.WeatherDayDetails
-import com.example.midtermproject.presentation.weather_feature.util.WeatherType
+import com.example.midtermproject.domain.feature_weather.model.WeatherInfo
+import com.example.midtermproject.presentation.feature_weather.model.WeatherDayDetails
+import com.example.midtermproject.presentation.feature_weather.util.WeatherType
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.Locale

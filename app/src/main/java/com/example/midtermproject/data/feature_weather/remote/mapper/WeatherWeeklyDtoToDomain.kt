@@ -1,8 +1,8 @@
 package com.example.midtermproject.data.feature_weather.remote.mapper
 
 import com.example.midtermproject.data.feature_weather.remote.model.WeatherWeeklyDto
-import com.example.midtermproject.domain.weather_feature.model.WeatherWeeklyData
-import com.example.midtermproject.domain.weather_feature.model.WeatherWeeklyInfo
+import com.example.midtermproject.domain.feature_weather.model.WeatherWeeklyData
+import com.example.midtermproject.domain.feature_weather.model.WeatherWeeklyInfo
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 

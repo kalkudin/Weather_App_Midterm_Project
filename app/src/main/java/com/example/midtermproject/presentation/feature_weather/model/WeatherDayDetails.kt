@@ -1,6 +1,6 @@
-package com.example.midtermproject.presentation.weather_feature.model
+package com.example.midtermproject.presentation.feature_weather.model
 
-import com.example.midtermproject.presentation.weather_feature.util.WeatherType
+import com.example.midtermproject.presentation.feature_weather.util.WeatherType
 
 data class WeatherDayDetails(
     val formattedDate: String,

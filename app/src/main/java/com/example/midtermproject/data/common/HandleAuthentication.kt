@@ -1,6 +1,6 @@
 package com.example.midtermproject.data.common
 
-import com.example.midtermproject.data.auth_feature.remote.model.UserDto
+import com.example.midtermproject.data.feature_auth.remote.model.UserDto
 import com.google.android.gms.tasks.Task
 import com.google.firebase.FirebaseNetworkException
 import com.google.firebase.auth.AuthResult
@@ -15,7 +15,6 @@ import kotlinx.coroutines.tasks.await
 import javax.inject.Inject
 
 class HandleAuthentication @Inject constructor() {
-
     fun <T> authenticate(user: UserDto, operation: (String, String) -> Task<AuthResult>, onSuccess: (AuthResult) -> T
     ): Flow<Resource<T>> = flow {
         emit(Resource.Loading)

@@ -4,10 +4,10 @@ import android.app.Application
 import android.location.Geocoder
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
-import com.example.midtermproject.data.auth_feature.local.repository.DataStoreRepositoryImpl
-import com.example.midtermproject.data.auth_feature.remote.repository.UserRepositoryImpl
 import com.example.midtermproject.data.common.HandleAuthentication
 import com.example.midtermproject.data.common.HandleResponse
+import com.example.midtermproject.data.feature_auth.local.repository.DataStoreRepositoryImpl
+import com.example.midtermproject.data.feature_auth.remote.repository.UserRepositoryImpl
 import com.example.midtermproject.data.feature_weather.remote.repository.CityLocationRepositoryImpl
 import com.example.midtermproject.data.feature_weather.remote.repository.UserLocationRepositoryImpl
 import com.example.midtermproject.data.feature_weather.remote.repository.WeatherRepositoryImpl
@@ -16,10 +16,10 @@ import com.example.midtermproject.data.feature_weather.remote.service.WeatherDat
 import com.example.midtermproject.data.feature_weather.remote.service.WeatherWeeklyService
 import com.example.midtermproject.domain.feature_auth.repository.DataStoreRepository
 import com.example.midtermproject.domain.feature_auth.repository.UserRepository
-import com.example.midtermproject.domain.weather_feature.repository.CityLocationRepository
-import com.example.midtermproject.domain.weather_feature.repository.UserLocationRepository
-import com.example.midtermproject.domain.weather_feature.repository.WeatherRepository
-import com.example.midtermproject.domain.weather_feature.repository.WeatherWeeklyRepository
+import com.example.midtermproject.domain.feature_weather.repository.CityLocationRepository
+import com.example.midtermproject.domain.feature_weather.repository.UserLocationRepository
+import com.example.midtermproject.domain.feature_weather.repository.WeatherRepository
+import com.example.midtermproject.domain.feature_weather.repository.WeatherWeeklyRepository
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.firebase.auth.FirebaseAuth
 import dagger.Module

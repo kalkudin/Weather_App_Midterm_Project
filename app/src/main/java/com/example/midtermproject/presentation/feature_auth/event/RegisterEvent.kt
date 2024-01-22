@@ -1,4 +1,4 @@
-package com.example.midtermproject.presentation.auth_feature.event
+package com.example.midtermproject.presentation.feature_auth.event
 
 sealed class RegisterEvent {
     data class Register(val email : String, val password : String, val repeatPassword : String) : RegisterEvent()

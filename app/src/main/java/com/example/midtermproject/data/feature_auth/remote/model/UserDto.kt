@@ -1,4 +1,4 @@
-package com.example.midtermproject.data.auth_feature.remote.model
+package com.example.midtermproject.data.feature_auth.remote.model
 
 data class UserDto(
     val email : String,

@@ -1,6 +1,6 @@
 package com.example.midtermproject.domain.feature_auth.usecase.datastore_usecase
 
-import com.example.midtermproject.data.auth_feature.local.repository.DataStoreRepositoryImpl
+import com.example.midtermproject.data.feature_auth.local.repository.DataStoreRepositoryImpl
 import com.example.midtermproject.domain.feature_auth.repository.DataStoreRepository
 import javax.inject.Inject
 

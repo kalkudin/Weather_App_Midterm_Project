@@ -1,14 +1,14 @@
-package com.example.midtermproject.presentation.weather_feature.weather_today
+package com.example.midtermproject.presentation.feature_weather.weather_today
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.midtermproject.data.common.Resource
 import com.example.midtermproject.domain.feature_auth.usecase.datastore_usecase.ClearSessionUseCase
-import com.example.midtermproject.domain.weather_feature.usecase.GetUserLocationUseCase
-import com.example.midtermproject.domain.weather_feature.usecase.GetWeatherUseCase
-import com.example.midtermproject.presentation.weather_feature.event.WeatherTodayEvent
-import com.example.midtermproject.presentation.weather_feature.mapper.formatTodayWeatherData
-import com.example.midtermproject.presentation.weather_feature.model.WeatherDayState
+import com.example.midtermproject.domain.feature_weather.usecase.GetUserLocationUseCase
+import com.example.midtermproject.domain.feature_weather.usecase.GetWeatherUseCase
+import com.example.midtermproject.presentation.feature_weather.event.WeatherTodayEvent
+import com.example.midtermproject.presentation.feature_weather.mapper.formatTodayWeatherData
+import com.example.midtermproject.presentation.feature_weather.model.WeatherDayState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow

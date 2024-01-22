@@ -1,4 +1,4 @@
-package com.example.midtermproject.domain.weather_feature.repository
+package com.example.midtermproject.domain.feature_weather.repository
 
 import android.location.Location
 

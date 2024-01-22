@@ -1,4 +1,4 @@
-package com.example.midtermproject.presentation.weather_feature.weather_week_day
+package com.example.midtermproject.presentation.feature_weather.weather_week_day
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.midtermproject.databinding.WeatherWeekDayItemLayoutBinding
-import com.example.midtermproject.presentation.weather_feature.model.WeatherDayDetails
+import com.example.midtermproject.presentation.feature_weather.model.WeatherDayDetails
 
 class WeatherWeekDayRecyclerAdapter : ListAdapter<WeatherDayDetails, WeatherWeekDayRecyclerAdapter.WeatherDayViewHolder>(
     WeatherDayDiffCallback()

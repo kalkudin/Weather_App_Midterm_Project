@@ -1,4 +1,4 @@
-package com.example.midtermproject.domain.weather_feature.repository
+package com.example.midtermproject.domain.feature_weather.repository
 
 import com.google.android.gms.maps.model.LatLng
 import kotlinx.coroutines.flow.Flow

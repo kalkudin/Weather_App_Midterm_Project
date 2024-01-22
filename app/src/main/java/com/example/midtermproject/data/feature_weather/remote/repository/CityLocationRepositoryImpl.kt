@@ -2,7 +2,7 @@ package com.example.midtermproject.data.feature_weather.remote.repository
 
 import android.location.Geocoder
 import android.util.Log
-import com.example.midtermproject.domain.weather_feature.repository.CityLocationRepository
+import com.example.midtermproject.domain.feature_weather.repository.CityLocationRepository
 import com.google.android.gms.maps.model.LatLng
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow

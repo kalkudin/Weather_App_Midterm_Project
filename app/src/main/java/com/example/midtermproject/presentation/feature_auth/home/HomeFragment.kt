@@ -1,4 +1,4 @@
-package com.example.midtermproject.presentation.auth_feature.home
+package com.example.midtermproject.presentation.feature_auth.home
 
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
@@ -7,8 +7,8 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import com.example.midtermproject.R
 import com.example.midtermproject.databinding.FragmentHomeLayoutBinding
-import com.example.midtermproject.presentation.auth_feature.event.HomeEvent
 import com.example.midtermproject.presentation.base.BaseFragment
+import com.example.midtermproject.presentation.feature_auth.event.HomeEvent
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 

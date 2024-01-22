@@ -1,9 +1,9 @@
-package com.example.midtermproject.data.auth_feature.remote.repository
+package com.example.midtermproject.data.feature_auth.remote.repository
 
 import com.example.midtermproject.data.common.HandleAuthentication
 import com.example.midtermproject.data.common.Resource
-import com.example.midtermproject.data.auth_feature.remote.mapper.toDto
-import com.example.midtermproject.domain.auth_feature.model.User
+import com.example.midtermproject.data.feature_auth.remote.mapper.toDto
+import com.example.midtermproject.domain.feature_auth.model.User
 import com.example.midtermproject.domain.feature_auth.repository.UserRepository
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.coroutines.flow.Flow

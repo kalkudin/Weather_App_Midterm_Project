@@ -1,4 +1,4 @@
-package com.example.midtermproject.domain.auth_feature.model
+package com.example.midtermproject.domain.feature_auth.model
 
 data class User(
     val email: String,

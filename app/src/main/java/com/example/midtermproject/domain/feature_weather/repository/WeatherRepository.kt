@@ -1,7 +1,7 @@
-package com.example.midtermproject.domain.weather_feature.repository
+package com.example.midtermproject.domain.feature_weather.repository
 
 import com.example.midtermproject.data.common.Resource
-import com.example.midtermproject.domain.weather_feature.model.WeatherInfo
+import com.example.midtermproject.domain.feature_weather.model.WeatherInfo
 import kotlinx.coroutines.flow.Flow
 
 interface WeatherRepository {

@@ -1,4 +1,4 @@
-package com.example.midtermproject.presentation.auth_feature.register
+package com.example.midtermproject.presentation.feature_auth.register
 
 import android.view.View
 import androidx.fragment.app.viewModels
@@ -8,9 +8,9 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import com.example.midtermproject.R
 import com.example.midtermproject.databinding.FragmentRegisterLayoutBinding
-import com.example.midtermproject.presentation.auth_feature.event.RegisterEvent
-import com.example.midtermproject.presentation.auth_feature.model.AuthState
 import com.example.midtermproject.presentation.base.BaseFragment
+import com.example.midtermproject.presentation.feature_auth.event.RegisterEvent
+import com.example.midtermproject.presentation.feature_auth.model.AuthState
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch

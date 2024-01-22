@@ -1,4 +1,4 @@
-package com.example.midtermproject.data.auth_feature.local.repository
+package com.example.midtermproject.data.feature_auth.local.repository
 
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences

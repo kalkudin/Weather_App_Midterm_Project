@@ -1,13 +1,13 @@
-package com.example.midtermproject.presentation.weather_feature.waether_weekly
+package com.example.midtermproject.presentation.feature_weather.waether_weekly
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.midtermproject.data.common.Resource
-import com.example.midtermproject.domain.weather_feature.usecase.GetUserLocationUseCase
-import com.example.midtermproject.domain.weather_feature.usecase.GetWeeklyWeatherUseCase
-import com.example.midtermproject.presentation.weather_feature.event.WeatherWeeklyEvent
-import com.example.midtermproject.presentation.weather_feature.mapper.formatWeeklyWeatherData
-import com.example.midtermproject.presentation.weather_feature.model.WeatherWeeklyState
+import com.example.midtermproject.domain.feature_weather.usecase.GetUserLocationUseCase
+import com.example.midtermproject.domain.feature_weather.usecase.GetWeeklyWeatherUseCase
+import com.example.midtermproject.presentation.feature_weather.event.WeatherWeeklyEvent
+import com.example.midtermproject.presentation.feature_weather.mapper.formatWeeklyWeatherData
+import com.example.midtermproject.presentation.feature_weather.model.WeatherWeeklyState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow

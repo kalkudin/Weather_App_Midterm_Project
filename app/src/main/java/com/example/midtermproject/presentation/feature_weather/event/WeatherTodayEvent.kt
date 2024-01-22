@@ -1,4 +1,4 @@
-package com.example.midtermproject.presentation.weather_feature.event
+package com.example.midtermproject.presentation.feature_weather.event
 
 sealed class WeatherTodayEvent{
     data object LogOut : WeatherTodayEvent()

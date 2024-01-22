@@ -1,4 +1,4 @@
-package com.example.midtermproject.presentation.weather_feature.waether_weekly
+package com.example.midtermproject.presentation.feature_weather.waether_weekly
 
 import android.view.View
 import androidx.fragment.app.viewModels
@@ -10,9 +10,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.midtermproject.R
 import com.example.midtermproject.databinding.FragmentWeatherWeeklyLayoutBinding
 import com.example.midtermproject.presentation.base.BaseFragment
-import com.example.midtermproject.presentation.weather_feature.event.WeatherWeeklyEvent
-import com.example.midtermproject.presentation.weather_feature.model.WeatherWeeklyDetails
-import com.example.midtermproject.presentation.weather_feature.model.WeatherWeeklyState
+import com.example.midtermproject.presentation.feature_weather.event.WeatherWeeklyEvent
+import com.example.midtermproject.presentation.feature_weather.model.WeatherWeeklyDetails
+import com.example.midtermproject.presentation.feature_weather.model.WeatherWeeklyState
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 

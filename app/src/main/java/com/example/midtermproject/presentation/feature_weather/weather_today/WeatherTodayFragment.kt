@@ -1,4 +1,4 @@
-package com.example.midtermproject.presentation.weather_feature.weather_today
+package com.example.midtermproject.presentation.feature_weather.weather_today
 
 import android.annotation.SuppressLint
 import android.view.View
@@ -11,9 +11,9 @@ import androidx.navigation.fragment.findNavController
 import com.example.midtermproject.R
 import com.example.midtermproject.databinding.FragmentWeatherTodayLayoutBinding
 import com.example.midtermproject.presentation.base.BaseFragment
-import com.example.midtermproject.presentation.weather_feature.event.WeatherTodayEvent
-import com.example.midtermproject.presentation.weather_feature.model.WeatherDayDetails
-import com.example.midtermproject.presentation.weather_feature.model.WeatherDayState
+import com.example.midtermproject.presentation.feature_weather.event.WeatherTodayEvent
+import com.example.midtermproject.presentation.feature_weather.model.WeatherDayDetails
+import com.example.midtermproject.presentation.feature_weather.model.WeatherDayState
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 

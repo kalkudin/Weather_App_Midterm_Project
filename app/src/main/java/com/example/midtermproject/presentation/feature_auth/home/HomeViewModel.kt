@@ -1,9 +1,9 @@
-package com.example.midtermproject.presentation.auth_feature.home
+package com.example.midtermproject.presentation.feature_auth.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.midtermproject.domain.feature_auth.usecase.datastore_usecase.ReadSessionUseCase
-import com.example.midtermproject.presentation.auth_feature.event.HomeEvent
+import com.example.midtermproject.presentation.feature_auth.event.HomeEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.SharedFlow
