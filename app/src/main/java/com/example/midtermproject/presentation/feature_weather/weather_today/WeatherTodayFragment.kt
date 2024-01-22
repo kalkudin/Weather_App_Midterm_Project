@@ -2,7 +2,6 @@ package com.example.midtermproject.presentation.feature_weather.weather_today
 
 import android.annotation.SuppressLint
 import android.view.View
-import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -14,6 +13,7 @@ import com.example.midtermproject.presentation.base.BaseFragment
 import com.example.midtermproject.presentation.feature_weather.event.WeatherTodayEvent
 import com.example.midtermproject.presentation.feature_weather.model.WeatherDayDetails
 import com.example.midtermproject.presentation.feature_weather.model.WeatherDayState
+import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -90,7 +90,7 @@ class WeatherTodayFragment : BaseFragment<FragmentWeatherTodayLayoutBinding>(Fra
         }
 
         state.errorMessage?.let { errorMessage ->
-            Toast.makeText(context, errorMessage, Toast.LENGTH_LONG).show()
+            showErrorScreen(errorMessage)
         }
     }
 
@@ -116,5 +116,9 @@ class WeatherTodayFragment : BaseFragment<FragmentWeatherTodayLayoutBinding>(Fra
     }
     private fun navigateToCityWeather() {
         findNavController().navigate(R.id.action_weatherTodayFragment_to_weatherCityFragment)
+    }
+
+    private fun showErrorScreen(errorMessage : String) {
+        Snackbar.make(binding.root, errorMessage, Snackbar.LENGTH_LONG).show()
     }
 }

@@ -12,6 +12,7 @@ import com.example.midtermproject.databinding.FragmentWeatherWeekDayLayoutBindin
 import com.example.midtermproject.presentation.base.BaseFragment
 import com.example.midtermproject.presentation.feature_weather.event.WeatherWeekDayEvent
 import com.example.midtermproject.presentation.feature_weather.model.WeatherDayState
+import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -95,6 +96,6 @@ class WeatherWeekDayFragment : BaseFragment<FragmentWeatherWeekDayLayoutBinding>
     }
 
     private fun showErrorScreen(errorMessage : String) {
-
+        Snackbar.make(binding.root, errorMessage, Snackbar.LENGTH_LONG).show()
     }
 }

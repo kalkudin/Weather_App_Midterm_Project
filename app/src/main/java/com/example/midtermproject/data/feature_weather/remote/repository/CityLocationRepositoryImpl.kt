@@ -4,10 +4,8 @@ import android.location.Geocoder
 import android.util.Log
 import com.example.midtermproject.domain.feature_weather.repository.CityLocationRepository
 import com.google.android.gms.maps.model.LatLng
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.suspendCancellableCoroutine
 import kotlin.coroutines.resume
 
@@ -41,5 +39,5 @@ class CityLocationRepositoryImpl(private val geocoder: Geocoder) : CityLocationR
             Log.e("Geocoding", "Geocoding error for $cityName", e)
             emit(Result.failure(e))
         }
-    }.flowOn(Dispatchers.IO)
+    }
 }

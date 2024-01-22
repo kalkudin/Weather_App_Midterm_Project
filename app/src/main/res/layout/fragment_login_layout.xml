@@ -104,6 +104,7 @@
         android:background="@drawable/bg_rectangle_background"
         android:fontFamily="@font/overpass_b"
         android:hint="@string/password"
+        android:inputType="textPassword"
         android:paddingStart="20dp"
         android:textColor="@color/ghost_white"
         android:textColorHint="@color/ghost_white"

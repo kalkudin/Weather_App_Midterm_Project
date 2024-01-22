@@ -35,7 +35,6 @@ class WeatherCityViewModel @Inject constructor(
     fun onEvent(event: WeatherCityEvent) {
         when (event) {
             is WeatherCityEvent.GetWeatherForCity -> getCityCoordinates(city = event.city)
-            is WeatherCityEvent.WeatherItemClicked -> navigateToWeekDayFragment(event.id)
             is WeatherCityEvent.NavigateBack -> navigateBack()
         }
     }
@@ -67,12 +66,6 @@ class WeatherCityViewModel @Inject constructor(
                     }
                 }
             }
-        }
-    }
-
-    private fun navigateToWeekDayFragment(id: Int) {
-        viewModelScope.launch {
-            _navigationFlow.emit(WeatherCityNavigationEvent.NavigateToItemClicked(id = id))
         }
     }
 

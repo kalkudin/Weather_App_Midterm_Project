@@ -40,6 +40,11 @@ class MainActivity : AppCompatActivity() {
         checkLocationPermission()
     }
 
+    override fun onResume() {
+        super.onResume()
+        checkLocationPermission()
+    }
+
     private fun checkLocationPermission() {
         val fineLocationPermission = ContextCompat.checkSelfPermission(
             this,

@@ -13,6 +13,7 @@ import com.example.midtermproject.databinding.FragmentWeatherCityLayoutBinding
 import com.example.midtermproject.presentation.base.BaseFragment
 import com.example.midtermproject.presentation.feature_weather.event.WeatherCityEvent
 import com.example.midtermproject.presentation.feature_weather.model.WeatherCityState
+import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -101,8 +102,10 @@ class WeatherCityFragment : BaseFragment<FragmentWeatherCityLayoutBinding>(Fragm
     }
 
     private fun showErrorScreen(message : String) {
-
+        Snackbar.make(binding.root, message, Snackbar.LENGTH_LONG).show()
     }
+
+
 
     private fun navigateToItemClicked() {
 
