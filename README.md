@@ -1,4 +1,4 @@
-![image](https://github.com/kalkudin/Midterm_Project_Weather_App/assets/117531275/04c6b803-0045-4d66-8cf1-3579f5c1c94a)## Description
+## Description
 
 This is a weather app with a very simple, user friendly interface that is designed to be very simple and portable to use. it provides real time information for weather regarding the users current location, 
 and contains within the funcitonality to search and view detailed weather informationg for any country, city, or anything in between, including the average weather for a state or a county or a local administrative unit. 
